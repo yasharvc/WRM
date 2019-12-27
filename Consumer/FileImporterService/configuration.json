@@ -1,0 +1,6 @@
+﻿{
+	"ConfigurationFileCheckerInterval": 60000,
+	"TimerInterval": 1000,
+	"UploadPath": "C:\\Users\\YasarAbbas\\DTEK Bilişim Sistem ve Çözümleri San Tic Ltd Şti\\RAKBANK - Documents\\Resources\\WRM\\WRM_Files\\Upload_Files\\",
+	"LogPath": "d:\\FileImporter.log"
+}

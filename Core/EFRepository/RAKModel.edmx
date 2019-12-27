@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DMRAKPHASE3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DeliveryRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIF" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="ECRN" Type="varchar" MaxLength="32" />
+          <Property Name="CRNN" Type="varchar" MaxLength="32" />
+          <Property Name="FirstName" Type="varchar" MaxLength="300" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AcountNumber" Type="varchar" MaxLength="32" />
+          <Property Name="CreditCardNumber" Type="varchar" MaxLength="32" />
+          <Property Name="DeliveryMode" Type="varchar" MaxLength="100" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="20" />
+          <Property Name="FaxNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PrimaryEmail" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SecondaryEmail" Type="varchar" MaxLength="80" />
+          <Property Name="SubForAccount" Type="bit" />
+          <Property Name="SubForCreditCard" Type="bit" />
+          <Property Name="SubForRemittance" Type="bit" />
+          <Property Name="SubForDeposit" Type="bit" />
+          <Property Name="SubForJointAccount" Type="bit" />
+          <Property Name="SubForInv" Type="bit" />
+          <Property Name="SubForTF" Type="bit" />
+          <Property Name="MakerId" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="CheckerId" Type="varchar" MaxLength="70" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifictionDate" Type="datetime" Nullable="false" />
+          <Property Name="ApprovalStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModeOfRegistration" Type="varchar" MaxLength="20" />
+          <Property Name="MasterNumber" Type="varchar" MaxLength="32" />
+          <Property Name="ModificationId" Type="bigint" />
+          <Property Name="Modifications" Type="int" Nullable="false" />
+          <Property Name="RequestStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DeliveryRegistrationDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIFID" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="DateOfBirth" Type="varchar" MaxLength="10" />
+          <Property Name="TradeLicenseNumber" Type="varchar" MaxLength="50" />
+          <Property Name="RetailCorporateIndicator" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="ModificationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetailModifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DetailsId" Type="bigint" Nullable="false" />
+          <Property Name="ModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="AgentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FieldModified" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OldValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="NewValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PremiumBanking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CIFID" Type="nvarchar" MaxLength="50" />
+          <Property Name="PremiumCustomer" Type="char" MaxLength="1" />
+          <Property Name="CustomerClassification" Type="nvarchar" MaxLength="1" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PremiumModifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PremiumId" Type="int" Nullable="false" />
+          <Property Name="ModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="AgentId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FieldModified" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OldValue" Type="nvarchar" MaxLength="50" />
+          <Property Name="NewValue" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessedFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="MD5Hash" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistrationModification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationId" Type="bigint" Nullable="false" />
+          <Property Name="ModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="AgentId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FieldModified" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OldValue" Type="varchar" MaxLength="255" />
+          <Property Name="NewValue" Type="varchar" MaxLength="255" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetailModifications_DetailModifications">
+          <End Role="DeliveryRegistrationDetails" Type="Self.DeliveryRegistrationDetails" Multiplicity="1" />
+          <End Role="DetailModifications" Type="Self.DetailModifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryRegistrationDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DetailModifications">
+              <PropertyRef Name="DetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PremiumModifications_PremiumBanking">
+          <End Role="PremiumBanking" Type="Self.PremiumBanking" Multiplicity="1" />
+          <End Role="PremiumModifications" Type="Self.PremiumModifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PremiumBanking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PremiumModifications">
+              <PropertyRef Name="PremiumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DMRAKPHASE3ModelStoreContainer">
+          <EntitySet Name="DeliveryRegistration" EntityType="Self.DeliveryRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryRegistrationDetails" EntityType="Self.DeliveryRegistrationDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailModifications" EntityType="Self.DetailModifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PremiumBanking" EntityType="Self.PremiumBanking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PremiumModifications" EntityType="Self.PremiumModifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessedFile" EntityType="Self.ProcessedFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationModification" EntityType="Self.RegistrationModification" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DetailModifications_DetailModifications" Association="Self.FK_DetailModifications_DetailModifications">
+            <End Role="DeliveryRegistrationDetails" EntitySet="DeliveryRegistrationDetails" />
+            <End Role="DetailModifications" EntitySet="DetailModifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PremiumModifications_PremiumBanking" Association="Self.FK_PremiumModifications_PremiumBanking">
+            <End Role="PremiumBanking" EntitySet="PremiumBanking" />
+            <End Role="PremiumModifications" EntitySet="PremiumModifications" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DMRAKPHASE3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DeliveryRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIF" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ECRN" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CRNN" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AcountNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CreditCardNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryMode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SecondaryEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SubForAccount" Type="Boolean" />
+          <Property Name="SubForCreditCard" Type="Boolean" />
+          <Property Name="SubForRemittance" Type="Boolean" />
+          <Property Name="SubForDeposit" Type="Boolean" />
+          <Property Name="SubForJointAccount" Type="Boolean" />
+          <Property Name="SubForInv" Type="Boolean" />
+          <Property Name="SubForTF" Type="Boolean" />
+          <Property Name="MakerId" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CheckerId" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifictionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApprovalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModeOfRegistration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MasterNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ModificationId" Type="Int64" />
+          <Property Name="Modifications" Type="Int32" Nullable="false" />
+          <Property Name="RequestStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DeliveryRegistrationDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIFID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TradeLicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RetailCorporateIndicator" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DetailModifications" Relationship="Self.FK_DetailModifications_DetailModifications" FromRole="DeliveryRegistrationDetails" ToRole="DetailModifications" />
+        </EntityType>
+        <EntityType Name="DetailModification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DetailsId" Type="Int64" Nullable="false" />
+          <Property Name="ModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AgentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FieldModified" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OldValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DeliveryRegistrationDetail" Relationship="Self.FK_DetailModifications_DetailModifications" FromRole="DetailModifications" ToRole="DeliveryRegistrationDetails" />
+        </EntityType>
+        <EntityType Name="PremiumBanking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CIFID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PremiumCustomer" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CustomerClassification" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModificationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PremiumModifications" Relationship="Self.FK_PremiumModifications_PremiumBanking" FromRole="PremiumBanking" ToRole="PremiumModifications" />
+        </EntityType>
+        <EntityType Name="PremiumModification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PremiumId" Type="Int32" Nullable="false" />
+          <Property Name="ModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AgentId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FieldModified" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OldValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NewValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PremiumBanking" Relationship="Self.FK_PremiumModifications_PremiumBanking" FromRole="PremiumModifications" ToRole="PremiumBanking" />
+        </EntityType>
+        <EntityType Name="RegistrationModification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationId" Type="Int64" Nullable="false" />
+          <Property Name="ModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AgentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FieldModified" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OldValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NewValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetailModifications_DetailModifications">
+          <End Role="DeliveryRegistrationDetails" Type="Self.DeliveryRegistrationDetail" Multiplicity="1" />
+          <End Role="DetailModifications" Type="Self.DetailModification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryRegistrationDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DetailModifications">
+              <PropertyRef Name="DetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PremiumModifications_PremiumBanking">
+          <End Role="PremiumBanking" Type="Self.PremiumBanking" Multiplicity="1" />
+          <End Role="PremiumModifications" Type="Self.PremiumModification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PremiumBanking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PremiumModifications">
+              <PropertyRef Name="PremiumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RAKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DeliveryRegistrations" EntityType="Self.DeliveryRegistration" />
+          <EntitySet Name="DeliveryRegistrationDetails" EntityType="Self.DeliveryRegistrationDetail" />
+          <EntitySet Name="DetailModifications" EntityType="Self.DetailModification" />
+          <EntitySet Name="PremiumBankings" EntityType="Self.PremiumBanking" />
+          <EntitySet Name="PremiumModifications" EntityType="Self.PremiumModification" />
+          <EntitySet Name="RegistrationModifications" EntityType="Self.RegistrationModification" />
+          <AssociationSet Name="FK_DetailModifications_DetailModifications" Association="Self.FK_DetailModifications_DetailModifications">
+            <End Role="DeliveryRegistrationDetails" EntitySet="DeliveryRegistrationDetails" />
+            <End Role="DetailModifications" EntitySet="DetailModifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PremiumModifications_PremiumBanking" Association="Self.FK_PremiumModifications_PremiumBanking">
+            <End Role="PremiumBanking" EntitySet="PremiumBankings" />
+            <End Role="PremiumModifications" EntitySet="PremiumModifications" />
+          </AssociationSet>
+          <EntitySet Name="ProcessedFiles" EntityType="DMRAKPHASE3Model.ProcessedFile" />
+        </EntityContainer>
+        <EntityType Name="ProcessedFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="MD5Hash" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DMRAKPHASE3ModelStoreContainer" CdmEntityContainer="RAKEntities">
+          <EntitySetMapping Name="DeliveryRegistrations">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.DeliveryRegistration">
+              <MappingFragment StoreEntitySet="DeliveryRegistration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CIF" ColumnName="CIF" />
+                <ScalarProperty Name="ECRN" ColumnName="ECRN" />
+                <ScalarProperty Name="CRNN" ColumnName="CRNN" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="AcountNumber" ColumnName="AcountNumber" />
+                <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
+                <ScalarProperty Name="DeliveryMode" ColumnName="DeliveryMode" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+                <ScalarProperty Name="SubForAccount" ColumnName="SubForAccount" />
+                <ScalarProperty Name="SubForCreditCard" ColumnName="SubForCreditCard" />
+                <ScalarProperty Name="SubForRemittance" ColumnName="SubForRemittance" />
+                <ScalarProperty Name="SubForDeposit" ColumnName="SubForDeposit" />
+                <ScalarProperty Name="SubForJointAccount" ColumnName="SubForJointAccount" />
+                <ScalarProperty Name="SubForInv" ColumnName="SubForInv" />
+                <ScalarProperty Name="SubForTF" ColumnName="SubForTF" />
+                <ScalarProperty Name="MakerId" ColumnName="MakerId" />
+                <ScalarProperty Name="CheckerId" ColumnName="CheckerId" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModifictionDate" ColumnName="LastModifictionDate" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+                <ScalarProperty Name="ModeOfRegistration" ColumnName="ModeOfRegistration" />
+                <ScalarProperty Name="MasterNumber" ColumnName="MasterNumber" />
+                <ScalarProperty Name="ModificationId" ColumnName="ModificationId" />
+                <ScalarProperty Name="Modifications" ColumnName="Modifications" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryRegistrationDetails">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.DeliveryRegistrationDetail">
+              <MappingFragment StoreEntitySet="DeliveryRegistrationDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CIFID" ColumnName="CIFID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="TradeLicenseNumber" ColumnName="TradeLicenseNumber" />
+                <ScalarProperty Name="RetailCorporateIndicator" ColumnName="RetailCorporateIndicator" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailModifications">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.DetailModification">
+              <MappingFragment StoreEntitySet="DetailModifications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DetailsId" ColumnName="DetailsId" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="FieldModified" ColumnName="FieldModified" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PremiumBankings">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.PremiumBanking">
+              <MappingFragment StoreEntitySet="PremiumBanking">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CIFID" ColumnName="CIFID" />
+                <ScalarProperty Name="PremiumCustomer" ColumnName="PremiumCustomer" />
+                <ScalarProperty Name="CustomerClassification" ColumnName="CustomerClassification" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PremiumModifications">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.PremiumModification">
+              <MappingFragment StoreEntitySet="PremiumModifications">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PremiumId" ColumnName="PremiumId" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="FieldModified" ColumnName="FieldModified" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationModifications">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.RegistrationModification">
+              <MappingFragment StoreEntitySet="RegistrationModification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+                <ScalarProperty Name="ModificationDate" ColumnName="ModificationDate" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="FieldModified" ColumnName="FieldModified" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessedFiles">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.ProcessedFile">
+              <MappingFragment StoreEntitySet="ProcessedFile">
+                <ScalarProperty Name="MD5Hash" ColumnName="MD5Hash" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+	<button class="btn btn-danger" onclick="send()">Send data</button>
+</div>
+<script>
+
+	var data = [{
+		"ACTION": "I",
+		"CIF": "3242",
+		"ECRN": "",
+		"CRNN": "",
+		"FirstName": "",
+		"LastName": "",
+		"MiddleName": "",
+		"AccountNumber": "",
+		"CreditCardNumber": "",
+		"DeliveryMode": "",
+		"MobileNumber": "",
+		"FaxNumber": "",
+		"PrimaryEmail": "",
+		"SecondaryEmail": "",
+		"SubForAccount": true,
+		"SubForCreditCard": false,
+		"SubForRemittance": true,
+		"SubForDeposit": true,
+		"SubForJointAccount": false,
+		"SubForInv": true,
+		"SubForTF": false,
+		"CheckerId": "",
+		"MakerId": "",
+		"ModeOfRegistration": "",
+		"MasterNumber": "",
+		"ApprovalStatus": "",
+		"RequestStatus": "",
+		"Comments": ""
+	},
+	{
+		"ACTION": "D",
+		"CIF": "111"
+	}];
+
+	function send(){
+		$.post({
+			url: "CheckFiles",
+			data: {
+				Data: data
+			}
+		});
+	}
+</script>

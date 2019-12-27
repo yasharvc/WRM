@@ -1,0 +1,176 @@
+RecordType|OperationFlg|Request_Status|CIFID|SubforCC|SubForAccount|SubForRemittance|SubForDeposit|DeliveryMode|FaxNum|PrimaryEmail|SecondaryEmail|RCreId|RCreTime|
+FN|M|SUC|0405155|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0405155|06-09-2018 14:44:38|
+FN|D|SUC|1221095|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR  1221095|14-11-2018 08:49:06|
+FN|D|REJ|2255606|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|ACCOUNT NAME FOR      2255606XX|26-09-2018 17:13:55|
+FN|M|SUC|2384478|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2384478|06-09-2018 14:37:43|
+FN|M|SUC|2459824|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2459824|12-11-2018 09:19:45|
+FN|M|SUC|0138667|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR  0138667|30-09-2018 10:46:29|
+FN|M|SUC|2303578|Y|Y|Y|Y|E||prunni@rakbanktst.ae|prunni@rakbanktst.ae|LAST NAME FOR 2303578|11-09-2018 12:57:44|
+FN|M|SUC|1417844|Y|Y|Y|Y|E||sideva@rakbanktst.ae|sideva@rakbanktst.ae|LAST NAME FOR 1417844|27-06-2018 14:06:18|
+FN|M|SUC|0453106|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0453106|06-09-2018 14:35:56|
+FN|M|SUC|0450650|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0450650|10-09-2018 09:53:25|
+FN|M|SUC|0594836|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0594836|06-09-2018 14:34:29|
+FN|M|SUC|1310740|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 1310740|12-11-2018 09:47:59|
+FN|M|SUC|0422927|Y|Y|Y|Y|E||jmohan@gmail.com|estatetest4@rakbanktst.ae|LAST NAME FOR 0422927|10-09-2018 12:09:51|
+FN|D|SUC|0219338|N|Y|Y|Y|F|04226120219338|elx2pbr23@rakbanktst.ae|estatetest6@rakbanktst.ae|ACCOUNT NAME FOR     0219338|01-07-2018 12:16:12|
+FN|M|SUC|2553331|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2553331|10-09-2018 09:54:59|
+FN|D|SUC|0338144|Y|Y|Y|Y|E||estatetest6@rakbanktst.ae||LAST NAME FOR 0338144|28-06-2018 16:17:07|
+FN|D|SUC|0409155|Y|Y|Y|Y|E||estatetest6@rakbanktst.ae||ACCOUNT NAME FOR      0409155XXXXXXXXXXXXXXXXXXXXXXX|28-06-2018 16:22:24|
+FN|D|SUC|0122430|Y|Y|Y|Y|E||estatetest6@rakbanktst.ae||LAST NAME FOR 0122430|28-06-2018 16:26:18|
+FN|D|SUC|0464349|Y|Y|Y|Y|E||estatetest6@rakbanktst.ae||LAST NAME FOR 0464349|28-06-2018 16:25:17|
+FN|D|SUC|0322937|Y|Y|Y|Y|E||estatetest6@rakbanktst.ae||LAST NAME FOR 0322937|28-06-2018 16:20:44|
+FN|I|SUC|2551024|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||LAST NAME FOR 2551024|02-07-2018 15:18:04|
+FN|I|SUC|0433073|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||ACCOUNT NAME FOR     0433073|03-07-2018 14:15:43|
+FN|I|SUC|2665398|Y|Y|Y|Y|E||EstateTest34@rakbanktst.ae||RAJ|10-07-2018 16:02:50|
+FN|I|SUC|2665394|Y|Y|Y|Y|E||EstateTest33@rakbanktst.ae||SYED|10-07-2018 16:03:52|
+FN|I|SUC|2678223|N|Y|Y|N|E||DANIDDP.DERRICK@GMAIL.COM||DANIEL DERRICK PRINC AMARNATH|19-07-2018 10:52:22|
+FN|I|SUC|2677216|Y|Y|Y|Y|E||PRUNNI@RAKBANKTST.AE||SIVA|12-08-2018 05:56:32|
+FN|I|SUC|2677188|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||JAYASEELI SUDHAN|12-08-2018 05:56:32|
+FN|I|SUC|2677208|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||KUMAR SUDHAN|12-08-2018 05:56:32|
+FN|I|SUC|2677210|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||MOHAN SUDHAN|12-08-2018 05:56:33|
+FN|I|SUC|2677212|Y|Y|Y|Y|E||PRUNNI@RAKBANKTST.AE||RAJINI|12-08-2018 05:56:33|
+FN|I|SUC|2677219|Y|Y|Y|Y|E||PRUNNI@RAKBANKTST.AE||NACHYAR|12-08-2018 05:56:33|
+FN|I|SUC|2677222|Y|Y|Y|Y|E||PRUNNI@RAKBANKTST.AE||NARMATHA|12-08-2018 05:56:33|
+FN|M|SUC|0273500|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0273500|14-11-2018 08:44:41|
+FN|D|REJ|2467675|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 2467675|26-09-2018 09:42:38|
+FN|D|SUC|0518101|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0518101|26-09-2018 17:59:56|
+FN|D|SUC|0244741|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0244741|30-09-2018 09:07:57|
+FN|M|SUC|2093932|Y|Y|Y|Y|E||sideva@rakbanktst.ae|sideva@rakbanktst.ae|LAST NAME FOR 2093932|27-06-2018 14:09:05|
+FN|D|SUC|0294246|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0294246|30-09-2018 09:08:28|
+FN|M|SUC|0314159|Y|Y|Y|Y|E||Povaz.r@rakbanktst.ae|Povaz.r@rakbanktst.ae|LAST NAME FOR 0314159|14-08-2018 17:32:01|
+FN|M|SUC|1177817|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 1177817|10-09-2018 09:56:15|
+FN|M|SUC|1463300|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 1463300|30-09-2018 08:51:51|
+FN|M|SUC|1364406|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 1364406|12-11-2018 09:49:06|
+FN|D|SUC|2003208|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR  2003208|11-09-2018 14:28:39|
+FN|D|SUC|0540727|Y|Y|Y|Y|E||estatetest6@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0540727|14-11-2018 08:48:25|
+FN|M|SUC|0225208|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0225208|14-11-2018 08:38:32|
+FN|D|SUC|0341562|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0341562|24-09-2018 14:52:27|
+FN|M|SUC|0385731|Y|Y|Y|Y|E||jmohan1@gmail.com|estatetest4@rakbanktst.ae|LAST NAME FOR 0385731|10-09-2018 12:12:56|
+FN|M|SUC|0439400|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||ACCOUNT NAME FOR      0439400XXXX|03-07-2018 14:17:15|
+FN|M|SUC|0291385|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae|elx2pbr23@rakbanktst.ae|LAST NAME FOR 0291385|05-07-2018 17:20:47|
+FN|M|SUC|2179901|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2179901|16-09-2018 16:47:37|
+FN|M|SUC|2357771|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2357771|12-11-2018 09:53:22|
+FN|M|SUC|2361468|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2361468|12-11-2018 09:54:21|
+FN|M|SUC|2483655|N|N|N|N|E||abcd@abcd.com||HUSNAIN  ASHFAQ|29-10-2018 15:14:42|
+FN|I|SUC|2677193|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||AMALRAJ GROUP|12-08-2018 05:56:33|
+FN|I|SUC|2677206|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||JAYAMALA GROUP|12-08-2018 05:56:33|
+FN|I|SUC|2677204|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||SURESH RAMAN|12-08-2018 05:56:33|
+FN|I|SUC|2677209|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||VARADARAJAN SUDHAN|12-08-2018 05:56:33|
+FN|I|SUC|2677214|Y|Y|Y|Y|E||PRUNNI@RAKBANKTST.AE||MURUAGAN|12-08-2018 05:56:33|
+FN|I|SUC|2677252|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||MOHANA KRISHNAN|13-08-2018 05:45:39|
+FN|I|SUC|2677254|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||SANTHOSH KUMAR|13-08-2018 05:45:39|
+FN|I|SUC|2677253|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||TAMIL SELVI|13-08-2018 05:45:40|
+FN|I|SUC|2677259|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||LOKESH ARUN|13-08-2018 05:45:40|
+FN|I|SUC|2677257|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||MANI KANDAN|13-08-2018 05:45:40|
+FN|I|SUC|2677255|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||RAMA MOORTHY|13-08-2018 05:45:40|
+FN|I|SUC|2677256|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||KRISHNA RAMESH|13-08-2018 05:45:40|
+FN|I|SUC|2677258|Y|Y|Y|Y|E||NEC@MOLESTIE.COM||MANI KANDAN|13-08-2018 05:45:40|
+FN|I|SUC|2677347|Y|Y|Y|Y|E||TESTING@GMAIL.COM||AO TESTING|22-08-2018 07:58:59|
+FN|I|SUC|2625501|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2625501|06-09-2018 14:49:59|
+FN|I|SUC|2572090|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2572090|06-09-2018 14:50:56|
+FN|I|SUC|2508091|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2508091|06-09-2018 14:52:00|
+FN|D|SUC|2646653|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2646653|20-09-2018 12:47:44|
+FN|I|SUC|2525375|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2525375|10-09-2018 09:51:56|
+FN|D|SUC|2593655|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2593655|11-09-2018 14:27:24|
+FN|D|SUC|2606152|Y|Y|Y|Y|E||latha@rakbanktst.ae||LAST NAME FOR 2606152|30-09-2018 09:07:21|
+FN|I|SUC|2613340|Y|Y|Y|Y|E||latha@rakbanktst.ae||LAST NAME FOR  2613340|10-09-2018 10:03:21|
+FN|I|SUC|2517209|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2517209|10-09-2018 10:04:31|
+FN|I|SUC|2096313|Y|Y|Y|Y|E||prunni@rakbanktst.ae||LAST NAME FOR 2096313|11-09-2018 15:52:51|
+FN|I|SUC|2621425|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2621425|18-09-2018 09:44:23|
+FN|D|SUC|2512478|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2512478|18-09-2018 16:45:12|
+FN|D|SUC|2555055|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2555055|18-09-2018 16:47:10|
+FN|D|SUC|2586370|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2586370|18-09-2018 16:51:03|
+FN|D|SUC|2610824|Y|Y|Y|Y|E||latha@rakbanktst.ae||LAST NAME FOR 2610824|24-09-2018 14:51:57|
+FN|I|SUC|2565841|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2565841|30-09-2018 08:49:57|
+FN|D|SUC|2569239|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR  2569239|30-09-2018 10:49:52|
+FN|I|SUC|2085905|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2085905|30-09-2018 08:55:23|
+FN|I|SUC|2558907|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2558907|30-09-2018 10:44:50|
+FN|D|SUC|1321800|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 1321800|30-09-2018 10:50:40|
+FN|D|SUC|2482059|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2482059|01-10-2018 14:09:29|
+FN|D|SUC|2489709|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2489709|01-10-2018 14:09:57|
+FN|D|SUC|2493658|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2493658|01-10-2018 14:10:25|
+FN|D|SUC|2495029|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2495029|01-10-2018 14:11:41|
+FN|D|SUC|2498316|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2498316|01-10-2018 14:12:09|
+FN|D|SUC|2499746|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2499746|01-10-2018 14:13:22|
+FN|D|SUC|2513023|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2513023|01-10-2018 14:18:58|
+FN|D|SUC|2548038|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2548038|01-10-2018 14:17:31|
+FN|I|SUC|2666052|Y|Y|Y|Y|E||sideva@rakbanktst.ae||TESTING OF BARCE|21-10-2018 09:41:12|
+FN|M|SUC|0109183|Y|Y|Y|Y|E||prunni@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0109183|13-12-2018 10:44:45|
+FN|D|SUC|0141488|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0141488|26-09-2018 17:47:46|
+FN|M|SUC|0209971|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0209971|20-11-2018 11:04:03|
+FN|M|SUC|2319863|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2319863|12-11-2018 09:52:00|
+FN|M|SUC|0274379|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0274379|14-11-2018 08:45:44|
+FN|M|SUC|2332540|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2332540|12-11-2018 09:17:31|
+FN|M|SUC|2416053|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 2416053|03-07-2018 11:15:56|
+FN|M|SUC|0290499|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0290499|30-09-2018 08:54:43|
+FN|M|SUC|0256205|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0256205|06-09-2018 14:27:15|
+FN|D|SUC|0329770|Y|Y|Y|N|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0329770|18-09-2018 15:42:30|
+FN|M|SUC|2437438|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2437438|30-09-2018 10:43:07|
+FN|M|SUC|0466375|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0466375|30-09-2018 08:49:26|
+FN|M|SUC|1313103|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 1313103|14-11-2018 08:50:14|
+FN|M|SUC|2000008|Y|Y|Y|Y|F|2483655|abcd@abcd.com|abcd@abcd.com|LAST NAME FOR  2000008|29-10-2018 11:15:03|
+FN|D|SUC|2494627|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2494627|01-10-2018 14:11:06|
+FN|D|SUC|2666053|Y|Y|Y|Y|E||sideva@rakbanktst.ae||RAJA RISHU|21-11-2018 17:36:48|
+FN|D|SUC|2666055|Y|Y|Y|Y|E||sideva@rakbanktst.ae||BULB BARCLE|22-11-2018 11:09:23|
+FN|I|SUC|2666056|Y|Y|Y|Y|E||sideva@rakbanktst.ae||BARCE MA|21-10-2018 09:46:27|
+FN|I|SUC|2666057|Y|Y|Y|Y|E||sideva@rakbanktst.ae||MALA|21-10-2018 09:47:30|
+FN|I|SUC|2666058|Y|Y|Y|Y|E||sideva@rakbanktst.ae||DARLING BOY|21-10-2018 09:48:43|
+FN|I|SUC|2666059|Y|Y|Y|Y|E||sideva@rakbanktst.ae||MALALA|21-10-2018 09:49:48|
+FN|I|SUC|2666060|Y|Y|Y|Y|E||sideva@rakbanktst.ae||SAHN|21-10-2018 09:50:53|
+FN|I|SUC|2666061|Y|Y|Y|Y|E||sideva@rakbanktst.ae||KULLAM|21-10-2018 09:51:53|
+FN|I|SUC|2666062|Y|Y|Y|Y|E||sideva@rakbanktst.ae||JOYOPOP|21-10-2018 09:52:49|
+FN|I|SUC|2665433|Y|Y|Y|Y|E||povaz.r@rakbanktst.ae||SAMSUNDAR|08-11-2018 16:51:28|
+FN|I|SUC|0621982|Y|Y|Y|Y|E||povaz.r@rakbanktst.ae||ACCOUNT NAME FOR   () 0621982|08-11-2018 16:59:19|
+FN|I|SUC|2391175|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2391175|12-11-2018 09:18:22|
+FN|I|SUC|2524344|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2524344|12-11-2018 09:20:06|
+FN|I|SUC|2218126|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR    2218126|12-11-2018 09:49:37|
+FN|I|SUC|2509124|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2509124|12-11-2018 09:56:02|
+FN|I|SUC|2512096|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2512096|12-11-2018 09:56:54|
+FN|I|SUC|2546446|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2546446|12-11-2018 09:57:57|
+FN|I|SUC|2547346|Y|Y|Y|Y|E||latha@rakbanktst.ae||LAST NAME FOR 2547346|12-11-2018 09:58:39|
+FN|I|SUC|2550112|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2550112|12-11-2018 09:59:33|
+FN|I|SUC|2564429|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2564429|12-11-2018 10:00:30|
+FN|I|SUC|2575073|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2575073|12-11-2018 10:01:07|
+FN|I|SUC|2587488|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2587488|12-11-2018 10:01:50|
+FN|M|SUC|0474293|Y|Y|Y|Y|E||Povaz.r@rakbanktst.ae|Povaz.r@rakbanktst.ae|SDFDF|14-08-2018 17:30:22|
+FN|D|REJ|2433414|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2433414|11-09-2018 14:29:22|
+FN|M|SUC|0203112|Y|Y|Y|Y|E||prunni@rakbanktst.ae|prunni@rakbanktst.ae|ACCOUNT NAME FOR     0203112|25-09-2018 10:32:49|
+FN|M|SUC|0610906|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0610906|20-11-2018 11:05:08|
+FN|D|SUC|0221893|N|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||LAST NAME FOR  0221893|01-07-2018 12:10:46|
+FN|M|SUC|2317894|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2317894|06-09-2018 14:29:00|
+FN|I|SUC|2599068|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2599068|12-11-2018 10:02:25|
+FN|I|SUC|2625118|Y|Y|Y|Y|E||latha@rakbanktst.ae||LAST NAME FOR   2625118|14-11-2018 08:40:22|
+FN|I|SUC|2541490|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR  2541490|14-11-2018 08:41:18|
+FN|I|SUC|2531184|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR  2531184|14-11-2018 08:42:12|
+FN|I|SUC|2331167|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR  2331167|14-11-2018 08:43:05|
+FN|I|SUC|1505897|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 1505897|14-11-2018 08:50:38|
+FN|I|SUC|2527332|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2527332|20-11-2018 11:05:32|
+FN|D|SUC|2583225|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2583225|26-11-2018 09:25:28|
+FN|D|SUC|2564732|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2564732|26-11-2018 09:32:51|
+FN|D|SUC|2582338|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2582338|26-11-2018 09:43:45|
+FN|D|SUC|2613976|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2613976|26-11-2018 09:45:03|
+FN|D|SUC|2645414|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2645414|26-11-2018 09:46:29|
+FN|I|SUC|2567193|Y|Y|Y|Y|E||latha@rakbanktst.ae||LAST NAME FOR 2567193|26-11-2018 16:16:06|
+FN|I|SUC|2644157|Y|Y|Y|Y|E||latha@rakbanktst.ae||LAST NAME FOR 2644157|26-11-2018 16:17:51|
+FN|I|SUC|2625365|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||LAST NAME FOR 2625365|05-12-2018 16:31:24|
+FN|I|SUC|2486017|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||LAST NAME FOR 2486017|05-12-2018 16:32:29|
+FN|I|SUC|2551126|N|Y|Y|Y|E||payel@rakbanktst.ae||LAST NAME FOR 2551126|06-12-2018 11:27:42|
+FN|D|SUC|0362195|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0362195|14-11-2018 08:47:49|
+FN|M|SUC|0370333|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0370333|10-09-2018 09:49:45|
+FN|D|SUC|2027543|N|Y|Y|Y|E||elx2pbr23@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 2027543|01-07-2018 12:16:52|
+FN|M|SUC|2015976|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2015976|12-11-2018 09:12:21|
+FN|M|SUC|2226962|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 2226962|12-11-2018 09:51:00|
+FN|M|SUC|0142344|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0142344|01-07-2018 11:47:50|
+FN|M|SUC|0538713|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||ACCOUNT NAME FOR    0538713|03-07-2018 14:14:40|
+FN|M|SUC|0549297|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0549297|06-09-2018 14:46:59|
+FN|M|SUC|2078200|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR  2078200|14-11-2018 08:52:05|
+FN|M|REJ|2210776|N|Y|Y|Y|E||povaz.r@rakbanktst.ae|estatetest4@rakbanktst.ae|ACCOUNT NAME FOR     2210776|08-11-2018 16:53:04|
+FN|M|SUC|2546335|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR   2546335|10-09-2018 09:51:12|
+FN|D|SUC|0110533|Y|Y|Y|Y|E||estatetest6@rakbanktst.ae|estatetest6@rakbanktst.ae|LAST NAME FOR   0110533XXX|03-07-2018 15:27:00|
+FN|M|SUC|2570105|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae||LAST NAME FOR 2570105|05-12-2018 16:30:37|
+FN|M|SUC|2647575|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae|elx2pbr23@rakbanktst.ae|ACCOUNT NAME FOR      2647575XXXXXXXXX|03-07-2018 14:18:04|
+FN|D|SUC|0348967|Y|Y|Y|Y|E||latha@rakbanktst.ae|latha@rakbanktst.ae|LAST NAME FOR 0348967|20-09-2018 12:48:25|
+FN|D|SUC|0380086|Y|Y|Y|Y|E||estatetest4@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 0380086|25-11-2018 15:16:06|
+FN|M|SUC|0501330|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae|elx2pbr23@rakbanktst.ae|LAST NAME FOR 0501330|05-07-2018 17:19:41|
+FN|M|SUC|1116231|Y|Y|Y|Y|E||elx2pbr23@rakbanktst.ae|estatetest4@rakbanktst.ae|LAST NAME FOR 1116231|05-12-2018 16:33:39|
+FN|D|SUC|0178456|Y|Y|Y|Y|E||estatetest8@rakbanktst.ae|estatetest6@rakbanktst.ae|LAST NAME FOR  0178456|22-06-2018 17:08:20|
