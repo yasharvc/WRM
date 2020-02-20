@@ -31,10 +31,12 @@ namespace FileParser.RAKBANK
 					temp.SetDefaultValues();
 					if (parser.Slices[1].ToLower() == "i")
 						temp.SetOperation(Contracts.OperationFlag.Insert);
-					if (parser.Slices[1].ToLower() == "m")
+					else if (parser.Slices[1].ToLower() == "m")
 						temp.SetOperation(Contracts.OperationFlag.Modification);
-					if (parser.Slices[1].ToLower() == "d")
+					else if (parser.Slices[1].ToLower() == "d")
 						temp.SetOperation(Contracts.OperationFlag.Unsupscription);
+					else
+						temp.SetOperation(OperationFlag.Insert);
 					res.Add(temp);
 				}
 				catch { }

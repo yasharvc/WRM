@@ -1,0 +1,107 @@
+﻿@{
+	ViewBag.Title = "New";
+}
+<div id="app" class="row">
+	<div class="row">
+		<div class="form-group m-3 col-5">
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">
+						<input type="radio" value="0" v-model="selected" /> {{accountNumber.title}}
+					</span>
+				</div>
+				<input type="text"
+					   v-model="accountNumber.value"
+					   class="form-control"
+					   :aria-label="accountNumber.title"
+					   aria-describedby="inputGroup-sizing-sm"
+					   :disabled="selected != 0" />
+			</div>
+			<small v-if="accountNumber.error.length == 0" class="form-text text-muted">
+				{{accountNumber.description}}
+			</small>
+			<small v-if="accountNumber.error.length > 0" class="form-text text-danger">
+				<i class="fas fa-exclamation-triangle animated faa-pulse"></i>{{accountNumber.error}}
+			</small>
+		</div>
+		<div class="form-group m-3 col-6">
+			<div class="input-group input-group-sm mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-sm">
+						<input type="radio" value="1" v-model="selected" /> {{cardNumber.title}}
+					</span>
+				</div>
+				<input type="text"
+					   v-model="cardNumber.value"
+					   class="form-control"
+					   :aria-label="cardNumber.title"
+					   aria-describedby="inputGroup-sizing-sm"
+					   :disabled="selected != 1" />
+				<div class="input-group-append">
+					<button class="btn btn-sm btn-success" :disabled="selected < 0"><i class="fas fa-save"></i> Validate</button>
+				</div>
+			</div>
+			<small v-if="cardNumber.error.length == 0" class="form-text text-muted">
+				{{cardNumber.description}}
+			</small>
+			<small v-if="cardNumber.error.length > 0" class="form-text text-danger">
+				<i class="fas fa-exclamation-triangle animated faa-pulse"></i>{{cardNumber.error}}
+			</small>
+		</div>
+		<hr />
+		<div class="form-group m-0 col-2">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<input type="checkbox" aria-label="Checkbox for following text input">
+					</div>
+				</div>
+				<input type="text" readonly class="form-control" value="Statement">
+			</div>
+		</div>
+		<div class="form-group m-0 col-2">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<input type="checkbox" aria-label="Checkbox for following text input">
+					</div>
+				</div>
+				<input type="text" readonly class="form-control" value="FD Confirmation">
+			</div>
+		</div>
+		<div class="form-group m-0 col-2">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<input type="checkbox" aria-label="Checkbox for following text input">
+					</div>
+				</div>
+				<input type="text" readonly class="form-control" value="Remittance">
+			</div>
+		</div>
+		<div class="form-group m-0 col-2">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<input type="checkbox" aria-label="Checkbox for following text input">
+					</div>
+				</div>
+				<input type="text" readonly class="form-control" value="Joint Account">
+			</div>
+		</div>
+		<div class="form-group m-0 col-2">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<input type="checkbox" aria-label="Checkbox for following text input">
+					</div>
+				</div>
+				<input type="text" readonly class="form-control" value="Investments">
+			</div>
+		</div>
+		<div class="col-12 alert alert-danger" role="alert">
+			This is a danger alert—check it out!
+		</div>
+	</div>
+</div>
+<script src="~/js/Registration/New/js.js?@Guid.NewGuid().ToString()"></script>

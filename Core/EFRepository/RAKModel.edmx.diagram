@@ -14,6 +14,8 @@
         <AssociationConnector Association="DMRAKPHASE3Model.FK_DetailModifications_DetailModifications" ManuallyRouted="false" />
         <AssociationConnector Association="DMRAKPHASE3Model.FK_PremiumModifications_PremiumBanking" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DMRAKPHASE3Model.ProcessedFile" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DMRAKPHASE3Model.DeliveryRegistrationHistory" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DMRAKPHASE3Model.Path" Width="1.5" PointX="8.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

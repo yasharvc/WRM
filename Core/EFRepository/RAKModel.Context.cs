@@ -32,5 +32,7 @@ namespace EFRepository
         public virtual DbSet<PremiumModification> PremiumModifications { get; set; }
         public virtual DbSet<RegistrationModification> RegistrationModifications { get; set; }
         public virtual DbSet<ProcessedFile> ProcessedFiles { get; set; }
+        public virtual DbSet<DeliveryRegistrationHistory> DeliveryRegistrationHistories { get; set; }
+        public virtual DbSet<Path> Paths { get; set; }
     }
 }

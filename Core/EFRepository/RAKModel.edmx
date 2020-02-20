@@ -54,6 +54,57 @@
           <Property Name="CreationDate" Type="datetime" Nullable="false" />
           <Property Name="ModificationDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DMRAKPHASE3.dbo.DeliveryRegistrationHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DeliveryRegistrationHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CIF" />
+            <PropertyRef Name="PrimaryEmail" />
+            <PropertyRef Name="MakerId" />
+            <PropertyRef Name="CreationDate" />
+            <PropertyRef Name="LastModifictionDate" />
+            <PropertyRef Name="ApprovalStatus" />
+            <PropertyRef Name="Modifications" />
+            <PropertyRef Name="RequestStatus" />
+            <PropertyRef Name="ActionCode" />
+            <PropertyRef Name="HistoryDateTime" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="CIF" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="ECRN" Type="varchar" MaxLength="32" />
+          <Property Name="CRNN" Type="varchar" MaxLength="32" />
+          <Property Name="FirstName" Type="varchar" MaxLength="300" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AcountNumber" Type="varchar" MaxLength="32" />
+          <Property Name="CreditCardNumber" Type="varchar" MaxLength="32" />
+          <Property Name="DeliveryMode" Type="varchar" MaxLength="100" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="20" />
+          <Property Name="FaxNumber" Type="varchar" MaxLength="50" />
+          <Property Name="PrimaryEmail" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SecondaryEmail" Type="varchar" MaxLength="80" />
+          <Property Name="SubForAccount" Type="bit" />
+          <Property Name="SubForCreditCard" Type="bit" />
+          <Property Name="SubForRemittance" Type="bit" />
+          <Property Name="SubForDeposit" Type="bit" />
+          <Property Name="SubForJointAccount" Type="bit" />
+          <Property Name="SubForInv" Type="bit" />
+          <Property Name="SubForTF" Type="bit" />
+          <Property Name="MakerId" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="CheckerId" Type="varchar" MaxLength="70" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastModifictionDate" Type="datetime" Nullable="false" />
+          <Property Name="ApprovalStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModeOfRegistration" Type="varchar" MaxLength="20" />
+          <Property Name="MasterNumber" Type="varchar" MaxLength="32" />
+          <Property Name="ModificationId" Type="bigint" />
+          <Property Name="Modifications" Type="int" Nullable="false" />
+          <Property Name="RequestStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="ActionCode" Type="int" Nullable="false" />
+          <Property Name="HistoryDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="DetailModifications">
           <Key>
             <PropertyRef Name="Id" />
@@ -67,6 +118,14 @@
           <Property Name="NewValue" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paths">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsUpload" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PremiumBanking">
           <Key>
@@ -144,10 +203,49 @@
           <EntitySet Name="DeliveryRegistration" EntityType="Self.DeliveryRegistration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryRegistrationDetails" EntityType="Self.DeliveryRegistrationDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailModifications" EntityType="Self.DetailModifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paths" EntityType="Self.Paths" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PremiumBanking" EntityType="Self.PremiumBanking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PremiumModifications" EntityType="Self.PremiumModifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcessedFile" EntityType="Self.ProcessedFile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationModification" EntityType="Self.RegistrationModification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryRegistrationHistory" EntityType="Self.DeliveryRegistrationHistory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DeliveryRegistrationHistory].[Id] AS [Id], 
+    [DeliveryRegistrationHistory].[CIF] AS [CIF], 
+    [DeliveryRegistrationHistory].[ECRN] AS [ECRN], 
+    [DeliveryRegistrationHistory].[CRNN] AS [CRNN], 
+    [DeliveryRegistrationHistory].[FirstName] AS [FirstName], 
+    [DeliveryRegistrationHistory].[LastName] AS [LastName], 
+    [DeliveryRegistrationHistory].[MiddleName] AS [MiddleName], 
+    [DeliveryRegistrationHistory].[AcountNumber] AS [AcountNumber], 
+    [DeliveryRegistrationHistory].[CreditCardNumber] AS [CreditCardNumber], 
+    [DeliveryRegistrationHistory].[DeliveryMode] AS [DeliveryMode], 
+    [DeliveryRegistrationHistory].[MobileNumber] AS [MobileNumber], 
+    [DeliveryRegistrationHistory].[FaxNumber] AS [FaxNumber], 
+    [DeliveryRegistrationHistory].[PrimaryEmail] AS [PrimaryEmail], 
+    [DeliveryRegistrationHistory].[SecondaryEmail] AS [SecondaryEmail], 
+    [DeliveryRegistrationHistory].[SubForAccount] AS [SubForAccount], 
+    [DeliveryRegistrationHistory].[SubForCreditCard] AS [SubForCreditCard], 
+    [DeliveryRegistrationHistory].[SubForRemittance] AS [SubForRemittance], 
+    [DeliveryRegistrationHistory].[SubForDeposit] AS [SubForDeposit], 
+    [DeliveryRegistrationHistory].[SubForJointAccount] AS [SubForJointAccount], 
+    [DeliveryRegistrationHistory].[SubForInv] AS [SubForInv], 
+    [DeliveryRegistrationHistory].[SubForTF] AS [SubForTF], 
+    [DeliveryRegistrationHistory].[MakerId] AS [MakerId], 
+    [DeliveryRegistrationHistory].[CheckerId] AS [CheckerId], 
+    [DeliveryRegistrationHistory].[CreationDate] AS [CreationDate], 
+    [DeliveryRegistrationHistory].[LastModifictionDate] AS [LastModifictionDate], 
+    [DeliveryRegistrationHistory].[ApprovalStatus] AS [ApprovalStatus], 
+    [DeliveryRegistrationHistory].[ModeOfRegistration] AS [ModeOfRegistration], 
+    [DeliveryRegistrationHistory].[MasterNumber] AS [MasterNumber], 
+    [DeliveryRegistrationHistory].[ModificationId] AS [ModificationId], 
+    [DeliveryRegistrationHistory].[Modifications] AS [Modifications], 
+    [DeliveryRegistrationHistory].[RequestStatus] AS [RequestStatus], 
+    [DeliveryRegistrationHistory].[Comments] AS [Comments], 
+    [DeliveryRegistrationHistory].[ActionCode] AS [ActionCode], 
+    [DeliveryRegistrationHistory].[HistoryDateTime] AS [HistoryDateTime]
+    FROM [dbo].[DeliveryRegistrationHistory] AS [DeliveryRegistrationHistory]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_DetailModifications_DetailModifications" Association="Self.FK_DetailModifications_DetailModifications">
             <End Role="DeliveryRegistrationDetails" EntitySet="DeliveryRegistrationDetails" />
             <End Role="DetailModifications" EntitySet="DetailModifications" />
@@ -307,6 +405,8 @@
             <End Role="PremiumModifications" EntitySet="PremiumModifications" />
           </AssociationSet>
           <EntitySet Name="ProcessedFiles" EntityType="DMRAKPHASE3Model.ProcessedFile" />
+          <EntitySet Name="DeliveryRegistrationHistories" EntityType="DMRAKPHASE3Model.DeliveryRegistrationHistory" />
+          <EntitySet Name="Paths" EntityType="DMRAKPHASE3Model.Path" />
         </EntityContainer>
         <EntityType Name="ProcessedFile">
           <Key>
@@ -316,6 +416,63 @@
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="FileName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="MD5Hash" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DeliveryRegistrationHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CIF" />
+            <PropertyRef Name="PrimaryEmail" />
+            <PropertyRef Name="MakerId" />
+            <PropertyRef Name="CreationDate" />
+            <PropertyRef Name="LastModifictionDate" />
+            <PropertyRef Name="ApprovalStatus" />
+            <PropertyRef Name="Modifications" />
+            <PropertyRef Name="RequestStatus" />
+            <PropertyRef Name="ActionCode" />
+            <PropertyRef Name="HistoryDateTime" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="CIF" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="ECRN" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CRNN" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AcountNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CreditCardNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryMode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryEmail" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SubForAccount" Type="Boolean" />
+          <Property Name="SubForCreditCard" Type="Boolean" />
+          <Property Name="SubForRemittance" Type="Boolean" />
+          <Property Name="SubForDeposit" Type="Boolean" />
+          <Property Name="SubForJointAccount" Type="Boolean" />
+          <Property Name="SubForInv" Type="Boolean" />
+          <Property Name="SubForTF" Type="Boolean" />
+          <Property Name="MakerId" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CheckerId" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastModifictionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApprovalStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModeOfRegistration" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MasterNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ModificationId" Type="Int64" />
+          <Property Name="Modifications" Type="Int32" Nullable="false" />
+          <Property Name="RequestStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActionCode" Type="Int32" Nullable="false" />
+          <Property Name="HistoryDateTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Path">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsUpload" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -437,6 +594,55 @@
                 <ScalarProperty Name="MD5Hash" ColumnName="MD5Hash" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryRegistrationHistories">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.DeliveryRegistrationHistory">
+              <MappingFragment StoreEntitySet="DeliveryRegistrationHistory">
+                <ScalarProperty Name="HistoryDateTime" ColumnName="HistoryDateTime" />
+                <ScalarProperty Name="ActionCode" ColumnName="ActionCode" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="Modifications" ColumnName="Modifications" />
+                <ScalarProperty Name="ModificationId" ColumnName="ModificationId" />
+                <ScalarProperty Name="MasterNumber" ColumnName="MasterNumber" />
+                <ScalarProperty Name="ModeOfRegistration" ColumnName="ModeOfRegistration" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+                <ScalarProperty Name="LastModifictionDate" ColumnName="LastModifictionDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CheckerId" ColumnName="CheckerId" />
+                <ScalarProperty Name="MakerId" ColumnName="MakerId" />
+                <ScalarProperty Name="SubForTF" ColumnName="SubForTF" />
+                <ScalarProperty Name="SubForInv" ColumnName="SubForInv" />
+                <ScalarProperty Name="SubForJointAccount" ColumnName="SubForJointAccount" />
+                <ScalarProperty Name="SubForDeposit" ColumnName="SubForDeposit" />
+                <ScalarProperty Name="SubForRemittance" ColumnName="SubForRemittance" />
+                <ScalarProperty Name="SubForCreditCard" ColumnName="SubForCreditCard" />
+                <ScalarProperty Name="SubForAccount" ColumnName="SubForAccount" />
+                <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="DeliveryMode" ColumnName="DeliveryMode" />
+                <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
+                <ScalarProperty Name="AcountNumber" ColumnName="AcountNumber" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CRNN" ColumnName="CRNN" />
+                <ScalarProperty Name="ECRN" ColumnName="ECRN" />
+                <ScalarProperty Name="CIF" ColumnName="CIF" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paths">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.Path">
+              <MappingFragment StoreEntitySet="Paths">
+                <ScalarProperty Name="IsUpload" ColumnName="IsUpload" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

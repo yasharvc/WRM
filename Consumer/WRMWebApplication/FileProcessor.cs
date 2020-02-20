@@ -9,7 +9,7 @@ using System.Data.Entity.Validation;
 using EFRepository;
 using System.Collections.Generic;
 
-namespace FileImporterService.Classes
+namespace WRMWebApplication
 {
 	public enum Status
 	{
@@ -54,15 +54,15 @@ namespace FileImporterService.Classes
 		{
 			if(Context.Database.Connection.State != System.Data.ConnectionState.Open)
 				Context.Database.Connection.Open();
-			Status = Classes.Status.CheckingFile;
+			Status = Status.CheckingFile;
 			var hash = PathToFile.CalcMD5HashByPath();
 			if (Context.ProcessedFiles.Any(m => m.FileName.Equals(PathToFile) || m.MD5Hash == hash))
 			{
-				Status = Classes.Status.Finished;
+				Status = Status.Finished;
 				ChangeResultWithEvent(ProcessResult.AlreadyProcessed);
 				return;
 			}
-			Status = Classes.Status.Processing;
+			Status = Status.Processing;
 			try
 			{
 				ProcessContent();
@@ -77,7 +77,7 @@ namespace FileImporterService.Classes
 			{
 				ChangeResultWithEvent(ProcessResult.Corrupted);
 			}
-			Status = Classes.Status.Finished;
+			Status = Status.Finished;
 		}
 
 		private void ChangeResultWithEvent(ProcessResult res)
@@ -100,8 +100,8 @@ namespace FileImporterService.Classes
 			var reader = parser.GetEligableReader(System.IO.Path.GetFileName(path), File.ReadAllText(path));
 			try
 			{
-				EFRepository.RAKEntities context = new EFRepository.RAKEntities();
-				EFRepository.ProcessedFile processFileInfo = new EFRepository.ProcessedFile();
+				RAKEntities context = new EFRepository.RAKEntities();
+				ProcessedFile processFileInfo = new EFRepository.ProcessedFile();
 				if (reader is CAPSFileReader || 
 					reader is DigitalBankingFileReader || 
 					reader is FinacleCustomerFileReader ||
@@ -116,13 +116,19 @@ namespace FileImporterService.Classes
 						else if (reg.GetOperation() == Contracts.OperationFlag.Modification)
 						{
 							var res = Context.DeliveryRegistrations.SingleOrDefault(reg.GetFindPredicate());
-							
+							DeliveryRegistrationHistory history = res;
+							history.ActionCode = 1;//Update
 							reg.UpdateValues(res);
+							reg.LastModifictionDate = DateTime.Now;
+							context.DeliveryRegistrationHistories.Add(history);
 						}
 						else if(reg.GetOperation() == Contracts.OperationFlag.Unsupscription)
 						{
 							var res = Context.DeliveryRegistrations.SingleOrDefault(reg.GetFindPredicate());
+							DeliveryRegistrationHistory history = res;
+							history.ActionCode = 2;//Delete
 							context.DeliveryRegistrations.Remove(res);
+							context.DeliveryRegistrationHistories.Add(history);
 						}
 					}
 				}

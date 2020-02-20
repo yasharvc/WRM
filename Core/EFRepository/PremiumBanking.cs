@@ -9,10 +9,8 @@
 
 namespace EFRepository
 {
-	using Contracts;
-	using Contracts.Attribute;
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
     
     public partial class PremiumBanking
     {
@@ -23,10 +21,8 @@ namespace EFRepository
         }
     
         public int Id { get; set; }
-		[FileToPropertyMapper(UploadFileTypes.Finacle_Premium_Bank, "CIFID")]
         public string CIFID { get; set; }
         public string PremiumCustomer { get; set; }
-		[FileToPropertyMapper(UploadFileTypes.Finacle_Premium_Bank, "CustomerClassification")]
         public string CustomerClassification { get; set; }
         public System.DateTime CreationDate { get; set; }
         public Nullable<System.DateTime> LastModificationDate { get; set; }

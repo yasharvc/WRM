@@ -10,22 +10,22 @@
 namespace EFRepository
 {
 	using Contracts;
-	using System.Collections.Generic;
-
-	public partial class DeliveryRegistrationDetail : PersistableModel<DeliveryRegistrationDetail>
-	{
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-		public DeliveryRegistrationDetail()
-		{
-			this.DetailModifications = new HashSet<DetailModification>();
-		}
-
-		public long ID { get; set; }
-		
-		public System.DateTime CreationDate { get; set; }
-		public System.DateTime ModificationDate { get; set; }
-
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public virtual ICollection<DetailModification> DetailModifications { get; set; }
-	}
+	using System;
+    using System.Collections.Generic;
+    
+    public partial class DeliveryRegistrationDetail : PersistableModel<DeliveryRegistrationDetail>
+    {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DeliveryRegistrationDetail()
+        {
+            this.DetailModifications = new HashSet<DetailModification>();
+        }
+    
+        public long ID { get; set; }
+        public System.DateTime CreationDate { get; set; }
+        public System.DateTime ModificationDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetailModification> DetailModifications { get; set; }
+    }
 }

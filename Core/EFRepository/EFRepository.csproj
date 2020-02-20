@@ -56,11 +56,18 @@
     <Compile Include="DeliveryRegistrationDetail.cs">
       <DependentUpon>RAKModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryRegistrationHistory.cs">
+      <DependentUpon>RAKModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DetailModification.cs">
       <DependentUpon>RAKModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PartialModels\DeliveryRegistration.cs" />
     <Compile Include="PartialModels\DeliveryRegistrationDetail.cs" />
+    <Compile Include="PartialModels\DeliveryRegistrationHistory.cs" />
+    <Compile Include="Path.cs">
+      <DependentUpon>RAKModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PremiumBanking.cs">
       <DependentUpon>RAKModel.tt</DependentUpon>
     </Compile>

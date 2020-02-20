@@ -13,17 +13,28 @@ namespace EFRepository
 	using System;
     using System.Collections.Generic;
     
-    public partial class DeliveryRegistration : PersistableModel<DeliveryRegistration>
-    {
+    public partial class DeliveryRegistrationHistory : PersistableModel<DeliveryRegistrationHistory>
+	{
         public long Id { get; set; }
+        public string CIF { get; set; }
         public string ECRN { get; set; }
         public string CRNN { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
-        
+        public string AcountNumber { get; set; }
         public string CreditCardNumber { get; set; }
-        
+        public string DeliveryMode { get; set; }
+        public string MobileNumber { get; set; }
+        public string FaxNumber { get; set; }
+        public string PrimaryEmail { get; set; }
+        public string SecondaryEmail { get; set; }
+        public Nullable<bool> SubForAccount { get; set; }
+        public Nullable<bool> SubForCreditCard { get; set; }
+        public Nullable<bool> SubForRemittance { get; set; }
+        public Nullable<bool> SubForDeposit { get; set; }
+        public Nullable<bool> SubForJointAccount { get; set; }
+        public Nullable<bool> SubForInv { get; set; }
         public Nullable<bool> SubForTF { get; set; }
         public string MakerId { get; set; }
         public string CheckerId { get; set; }
@@ -36,5 +47,7 @@ namespace EFRepository
         public int Modifications { get; set; }
         public string RequestStatus { get; set; }
         public string Comments { get; set; }
+        public int ActionCode { get; set; }
+        public System.DateTime HistoryDateTime { get; set; }
     }
 }
