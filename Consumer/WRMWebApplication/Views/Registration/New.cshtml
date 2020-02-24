@@ -38,7 +38,7 @@
 					   aria-describedby="inputGroup-sizing-sm"
 					   :disabled="selected != 1" />
 				<div class="input-group-append">
-					<button class="btn btn-sm btn-success" :disabled="selected < 0"><i class="fas fa-save"></i> Validate</button>
+					<button class="btn btn-sm btn-success" :disabled="selected < 0" v-on:click="validate()"><i class="fas fa-save"></i> Validate</button>
 				</div>
 			</div>
 			<small v-if="cardNumber.error.length == 0" class="form-text text-muted">
@@ -49,59 +49,111 @@
 			</small>
 		</div>
 		<hr />
-		<div class="form-group m-0 col-2">
+	</div>
+	<div class="row">
+		<div class="form-group m-0 col-6">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<div class="input-group-text">
-						<input type="checkbox" aria-label="Checkbox for following text input">
+						Name:
+					</div>
+				</div>
+				<input type="text" readonly class="form-control" disabled v-model="name">
+			</div>
+		</div>
+		<div class="form-group m-0 col-6">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						CIF:
+					</div>
+				</div>
+				<input type="text" readonly class="form-control" disabled v-model="CIF">
+			</div>
+		</div>
+	</div>
+
+	<div class="row" v-if="validated">
+
+		<h4 class="border-bottom my-3 text-danger col-12">Customer Information</h4>
+		<hr />
+		<br />
+		<div class="form-group m-0 col">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						<input type="checkbox" v-model="Statement">
 					</div>
 				</div>
 				<input type="text" readonly class="form-control" value="Statement">
 			</div>
 		</div>
-		<div class="form-group m-0 col-2">
+		<div class="form-group m-0 col">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<div class="input-group-text">
-						<input type="checkbox" aria-label="Checkbox for following text input">
+						<input type="checkbox" v-model="FDConfirmation">
 					</div>
 				</div>
 				<input type="text" readonly class="form-control" value="FD Confirmation">
 			</div>
 		</div>
-		<div class="form-group m-0 col-2">
+		<div class="form-group m-0 col">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<div class="input-group-text">
-						<input type="checkbox" aria-label="Checkbox for following text input">
+						<input type="checkbox" v-model="Remittance">
 					</div>
 				</div>
 				<input type="text" readonly class="form-control" value="Remittance">
 			</div>
 		</div>
-		<div class="form-group m-0 col-2">
+		<div class="form-group m-0 col">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<div class="input-group-text">
-						<input type="checkbox" aria-label="Checkbox for following text input">
+						<input type="checkbox" v-model="JointAccount">
 					</div>
 				</div>
 				<input type="text" readonly class="form-control" value="Joint Account">
 			</div>
 		</div>
-		<div class="form-group m-0 col-2">
+		<div class="form-group m-0 col">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<div class="input-group-text">
-						<input type="checkbox" aria-label="Checkbox for following text input">
+						<input type="checkbox" v-model="Investments">
 					</div>
 				</div>
 				<input type="text" readonly class="form-control" value="Investments">
 			</div>
 		</div>
-		<div class="col-12 alert alert-danger" role="alert">
-			This is a danger alert—check it out!
+		<h4 class="border-bottom my-3 text-danger col-12">eDelivery Information</h4>
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text bg-secondary text-white"><input type="checkbox" v-model="emailChecked" />&nbsp;&nbsp;Email Delivery</span>
+				<span class="input-group-text">Primary Email:</span>
+			</div>
+			<input type="text" class="form-control" :disabled="!emailChecked" v-model="PrimaryEmail">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="">Secondary Email:</span>
+			</div>
+			<input type="text" :disabled="!emailChecked" class="form-control" v-model="SecondaryEmail">
 		</div>
+		<br />
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text bg-secondary text-white"><input type="checkbox" v-model="faxChecked" />&nbsp;&nbsp;Fax Delivery</span>
+				<span class="input-group-text">Fax number:</span>
+			</div>
+			<input type="text" :disabled="!faxChecked" class="form-control" v-model="FaxNumber">
+		</div>
+		<button class="btn btn-success btn-sm border-top mt-2" :disabled="inProgress" v-on:click="save()"><i v-if="inProgress" class="fas fa-spin fa-spinner"></i><i v-else class="fas fa-save"></i> Submit</button>
+	</div>
+
+
+	<div class="col-12 alert alert-danger" role="alert" v-if="error.length > 0">
+		{{error}}
 	</div>
 </div>
 <script src="~/js/Registration/New/js.js?@Guid.NewGuid().ToString()"></script>
