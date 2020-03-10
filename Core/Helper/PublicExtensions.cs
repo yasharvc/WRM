@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Helper
 {
@@ -37,6 +35,11 @@ namespace Helper
 					return BitConverter.ToString(md5.ComputeHash(stream)).ToLowerInvariant();
 				}
 			}
+		}
+
+		public static Stream ToStream(this string s)
+		{
+			return new MemoryStream(Encoding.UTF8.GetBytes(s));
 		}
 	}
 }

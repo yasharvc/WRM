@@ -12,14 +12,16 @@ namespace ConsoleOutput
 {
 	public class XMLTest
 	{
+		public string XML { get; set; }
 		XmlElement current = null;
 		XmlDocument xd = new XmlDocument();
-		public XMLTest()
+
+		public XMLTest(string xml)
 		{
-			xml = string.Format(xml, "\"");
-			xsds.Add(File.ReadAllText(@"C:\Users\YasarAbbas\Desktop\CustomerAndAccountDetails\RAKHeader.xsd"));
-			xsds.Add(File.ReadAllText(@"C:\Users\YasarAbbas\Desktop\CustomerAndAccountDetails\CustomerAndAccountDetails_v1_resp.xsd"));
+			XML = xml;
 		}
+
+		public XMLTest() : this("") { }
 
 		public void GotoPath(string path)
 		{
