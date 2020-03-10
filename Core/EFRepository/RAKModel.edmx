@@ -119,6 +119,22 @@ warning 6002: The table/view 'DMRAKPHASE3.dbo.DeliveryRegistrationHistory' does 
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="GoupMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="2000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Paths">
           <Key>
             <PropertyRef Name="Id" />
@@ -175,6 +191,22 @@ warning 6002: The table/view 'DMRAKPHASE3.dbo.DeliveryRegistrationHistory' does 
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_DetailModifications_DetailModifications">
           <End Role="DeliveryRegistrationDetails" Type="Self.DeliveryRegistrationDetails" Multiplicity="1" />
           <End Role="DetailModifications" Type="Self.DetailModifications" Multiplicity="*" />
@@ -203,11 +235,15 @@ warning 6002: The table/view 'DMRAKPHASE3.dbo.DeliveryRegistrationHistory' does 
           <EntitySet Name="DeliveryRegistration" EntityType="Self.DeliveryRegistration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryRegistrationDetails" EntityType="Self.DeliveryRegistrationDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailModifications" EntityType="Self.DetailModifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoupMenu" EntityType="Self.GoupMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paths" EntityType="Self.Paths" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PremiumBanking" EntityType="Self.PremiumBanking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PremiumModifications" EntityType="Self.PremiumModifications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcessedFile" EntityType="Self.ProcessedFile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RegistrationModification" EntityType="Self.RegistrationModification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeliveryRegistrationHistory" EntityType="Self.DeliveryRegistrationHistory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DeliveryRegistrationHistory].[Id] AS [Id], 
@@ -407,6 +443,10 @@ warning 6002: The table/view 'DMRAKPHASE3.dbo.DeliveryRegistrationHistory' does 
           <EntitySet Name="ProcessedFiles" EntityType="DMRAKPHASE3Model.ProcessedFile" />
           <EntitySet Name="DeliveryRegistrationHistories" EntityType="DMRAKPHASE3Model.DeliveryRegistrationHistory" />
           <EntitySet Name="Paths" EntityType="DMRAKPHASE3Model.Path" />
+          <EntitySet Name="GoupMenus" EntityType="DMRAKPHASE3Model.GoupMenu" />
+          <EntitySet Name="Groups" EntityType="DMRAKPHASE3Model.Group" />
+          <EntitySet Name="Users" EntityType="DMRAKPHASE3Model.User" />
+          <EntitySet Name="UserGroups" EntityType="DMRAKPHASE3Model.UserGroup" />
         </EntityContainer>
         <EntityType Name="ProcessedFile">
           <Key>
@@ -473,6 +513,38 @@ warning 6002: The table/view 'DMRAKPHASE3.dbo.DeliveryRegistrationHistory' does 
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsUpload" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoupMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -643,6 +715,42 @@ warning 6002: The table/view 'DMRAKPHASE3.dbo.DeliveryRegistrationHistory' does 
               <MappingFragment StoreEntitySet="Paths">
                 <ScalarProperty Name="IsUpload" ColumnName="IsUpload" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoupMenus">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.GoupMenu">
+              <MappingFragment StoreEntitySet="GoupMenu">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="DMRAKPHASE3Model.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

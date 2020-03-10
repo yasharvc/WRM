@@ -1,0 +1,108 @@
+﻿@model IEnumerable<EFRepository.UserWithGroup>
+
+@{
+	ViewBag.Title = "Users administration";
+}
+
+<h2 class="border-bottom mb-3">Users administration:</h2>
+
+<h3 class="text-success">Add new User</h3>
+<form class="form-inline border-bottom mb-3" id="app">
+	<div class="row">
+		<div class="input-group col">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">User name:</span>
+			</div>
+			<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" v-model="username">
+		</div>
+		<div class="input-group col">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1">Password:</span>
+			</div>
+			<input type="password" class="form-control" aria-label="Password" aria-describedby="basic-addon1" v-model="password">
+		</div>
+		<div class="input-group col">
+			<div class="input-group-prepend">
+				<label class="input-group-text" for="inputGroupSelect01">Group Type</label>
+			</div>
+			<select class="custom-select" v-model="group">
+				<option selected value="-1">Choose...</option>
+				<option value="1">Admin</option>
+				<option value="2">Maker</option>
+				<option value="3">Checker</option>
+			</select>
+			<div class="input-group-append">
+				<button class="btn btn-success" type="button" v-on:click="save()" :disabled="inProgress"><i v-if="inProgress" class="fa fa-spin fa-spinner"></i><i v-else="" class="fa fa-save"></i> Create User</button>
+			</div>
+		</div>
+	</div>
+	<div class="col-12" v-if="error.length > 0">
+		<div class="alert alert-danger" role="alert">
+			<i class="fa fa-exclamation-triangle animated faa-flash text-danger"></i> {{error}}
+		</div>
+	</div>
+</form>
+<h3 class="text-success">Users list</h3>
+<table class="table">
+	<tr>
+		<th>
+			User Name
+		</th>
+		<th>
+			Group Name
+		</th>
+		<th>Change type/Action:</th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.User.Username)
+			</td>
+			<td>
+				@item.Group.Name
+			</td>
+			<td>
+				Set as :
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<a role="button" href="SetMaker/@item.User.Id" class="btn btn-outline-info">Maker</a>
+					<a role="button" href="SetChecker/@item.User.Id" class="btn btn-outline-info">Checker</a>
+					<a role="button" href="SetAdmin/@item.User.Id" class="btn btn-outline-info">Admin</a>
+				</div>
+			</td>
+		</tr>
+	}
+
+</table>
+<script>
+	var data = {
+		username: '',
+		password: '',
+		group: -1,
+		error: '',
+		inProgress: false
+	};
+	var app = new Vue({
+		el: '#app',
+		data: data,
+		methods: {
+			save: function () {
+				app.inProgress = true;
+				axios.post('Create', {
+					username: app.username,
+					password: app.password,
+					group:app.group
+				}).then(function (resp) {
+					app.inProgress = false;
+					var d = resp.data;
+					if (d.result) {
+						window.location = '@Url.Action("Users","Admin")';
+					} else {
+						app.error = d.error;
+					}
+				})
+			}
+		}
+	});
+</script>

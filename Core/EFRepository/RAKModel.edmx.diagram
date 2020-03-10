@@ -16,6 +16,10 @@
         <EntityTypeShape EntityType="DMRAKPHASE3Model.ProcessedFile" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="DMRAKPHASE3Model.DeliveryRegistrationHistory" Width="1.5" PointX="3.375" PointY="8.75" />
         <EntityTypeShape EntityType="DMRAKPHASE3Model.Path" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DMRAKPHASE3Model.GoupMenu" Width="1.5" PointX="5.375" PointY="8.75" />
+        <EntityTypeShape EntityType="DMRAKPHASE3Model.Group" Width="1.5" PointX="8.375" PointY="7.75" />
+        <EntityTypeShape EntityType="DMRAKPHASE3Model.User" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DMRAKPHASE3Model.UserGroup" Width="1.5" PointX="10.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

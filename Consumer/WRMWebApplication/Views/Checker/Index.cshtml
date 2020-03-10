@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div id="table" class="container">
+	<table class="table">
+		<thead>
+			<tr v-if="isLoading">
+				<th scope="col">Loading the data</th>
+			</tr>
+			<tr v-if="!isLoading">
+				<th scope="col" v-for="col in columnTitles">{{col}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-if="isLoading"><td><i class="fa fa-4x fa-spin fa-spinner"></i></td></tr>
+			<tr v-if="!isLoading" v-for="row in getList()"><td v-for="col in columns"><span v-html="render(row,col)"></span></td></tr>
+		</tbody>
+	</table>
+	Current Page:{{paging.currentPage}}
+	<ul class="pagination" v-if="!isLoading">
+
+		<li class="page-item" v-for="n in paging.totalPage"><a role="button" v-on:click="goto(n)" class="page-link" href="#">{{n}}</a></li>
+	</ul>
+</div>
+
+
+
+<script>
+	var pageInfo = {
+		currentPage: 0,
+		totalPage: 0,
+		recordsInPage: 10
+	};
+	var urls = {
+		pageCount: 'PageCount',
+		dataPage: 'GetPageData',
+		columnNames: 'GetColumnNames',
+		columnTitles: 'GetColumnTitles'
+	}
+	var tableInfo = {
+		element: '#table',
+		dataURL: '',
+		list: [],
+		columns: [],
+		columnTitles: [],
+		paging: pageInfo,
+		isLoading: true,
+		noData: false,
+		urls: urls
+	};
+
+	function byTimer(fn) {
+		setTimeout(fn(), 10);
+	}
+
+	//Table
+	var table = new Vue({
+		el: tableInfo.element,
+		data: tableInfo,
+		methods: {
+			init: function () {
+				table.isLoading = true;
+				axios.get(table.urls.columnNames).then(function (resp) {
+					table.columns = resp.data;
+				});
+				axios.get(table.urls.columnTitles).then(function (resp) {
+					table.columnTitles = resp.data;
+				});
+				axios.get(table.urls.pageCount).then(function (resp) {
+					table.paging.totalPage = parseInt(resp.data);
+					table.paging.currentPage = parseInt(resp.data) > 0 ? 1 : 0;
+					if (parseInt(resp.data) > 0) {
+						table.noData = false;
+						byTimer(function () { table.goto(1) });
+					} else {
+						table.noData = true;
+					}
+					table.isLoading = false;
+				});
+			},
+			getDataPage: function (page) {
+				return table.urls.dataPage + '/' + page;
+			},
+			goto: function (page) {
+				table.isLoading = true;
+				axios.get(table.getDataPage(page)).then(function (resp) {
+					table.isLoading = false;
+					table.list = resp.data;
+					table.paging.currentPage = page;
+				});
+			}
+			,
+			getList: function () {
+				return typeof this.list == 'undefined' ? [{name:"no data"}] : this.list;
+			},
+			render: function (row, col) {
+				debugger;
+				if (col == 'tool')
+					return '<button class="btn btn-link" onclick="test(' + row.age + ')"><i class="fa fa-check-square"></i></button>';
+				return '>' + row[col];
+			},
+			test: function (id) {
+				alert('test' + id);
+				id++;
+			}
+		}
+	});
+	table.init();
+	function test(page) {
+		alert('outer' + page);
+	}
+</script>

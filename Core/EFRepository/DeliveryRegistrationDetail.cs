@@ -14,7 +14,7 @@ namespace EFRepository
     using System.Collections.Generic;
     
     public partial class DeliveryRegistrationDetail : PersistableModel<DeliveryRegistrationDetail>
-    {
+	{
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DeliveryRegistrationDetail()
         {

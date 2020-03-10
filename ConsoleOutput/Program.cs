@@ -1,11 +1,12 @@
 ﻿using FileParser;
-using System;
-using System.Linq;
-using Helper;
 using FileParser.RAKBANK;
-using System.IO;
-using System.Data.Entity.Validation;
+using Helper;
 using NLog;
+using System;
+using System.Data.Entity.Validation;
+using System.IO;
+using System.Linq;
+using System.Text;
 using TestClass;
 
 namespace ConsoleOutput
@@ -21,38 +22,17 @@ namespace ConsoleOutput
 		}
 		static void Main(string[] args)
 		{
-			FileWriter.ElixirFinacleModel m = new FileWriter.ElixirFinacleModel
-			{
-				CIFID = "1",
-				DeliveryMode = "2",
-				FaxNum = "3",
-				OperationFlag = "4",
-				PrimaryEmail = "5",
-				RCreId = "6",
-				RCreTime = "7",
-				RecordType = "8",
-				Request_Status = "9",
-				SecondaryEmail = "10",
-				SubForAccount = true,
-				SubforCC = false,
-				SubForDeposit = true,
-				SubForRemittance = false,
-				SubForFutureService1 = true,
-				SubForFutureService2 = false,
-				SubForFutureService3 = true,
-				SubForInvestments = false
-			};
-			b b = new b
-			{
-				Age = 150,
-				Id = 10,
-				Name = "Yashar"
-			};
-			a a = b;
-			Printa(b);
-			Printa(a);
-			//Console.WriteLine(new FileWriter.ElixirFinacleWriter().MakeOutPut(Contracts.DownloadFileTypes.FinacleBanking, m));
+			var xml = new XMLTest();
+			xml.GotoPath("FIXML/Body/executeFinacleScriptResponse/executeFinacleScript_CustomData/getCustomerAndAccountDetails_RES/CustDet");
+
+			Console.WriteLine(xml.GetInnerTextOf("FirstName"));
+			Console.WriteLine(xml.GetInnerTextOf("LastName"));
 			Console.ReadKey();
+		}
+
+		static Stream GenerateStreamFromString(string s)
+		{
+			return new MemoryStream(Encoding.UTF8.GetBytes(s));
 		}
 
 		static void Printa(a a)
@@ -88,5 +68,6 @@ namespace ConsoleOutput
 				throw;
 			}
 		}
+
 	}
 }

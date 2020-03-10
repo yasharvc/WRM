@@ -34,5 +34,9 @@ namespace EFRepository
         public virtual DbSet<ProcessedFile> ProcessedFiles { get; set; }
         public virtual DbSet<DeliveryRegistrationHistory> DeliveryRegistrationHistories { get; set; }
         public virtual DbSet<Path> Paths { get; set; }
+        public virtual DbSet<GoupMenu> GoupMenus { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
     }
 }

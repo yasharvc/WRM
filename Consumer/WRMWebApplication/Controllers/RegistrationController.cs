@@ -6,6 +6,7 @@ using WRMWebApplication.Models;
 
 namespace WRMWebApplication.Controllers
 {
+	[Authorize]
 	public class RegistrationController : Controller
     {
         // GET: Registration

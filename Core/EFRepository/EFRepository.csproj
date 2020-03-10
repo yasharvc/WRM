@@ -62,6 +62,12 @@
     <Compile Include="DetailModification.cs">
       <DependentUpon>RAKModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GoupMenu.cs">
+      <DependentUpon>RAKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs">
+      <DependentUpon>RAKModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PartialModels\DeliveryRegistration.cs" />
     <Compile Include="PartialModels\DeliveryRegistrationDetail.cs" />
     <Compile Include="PartialModels\DeliveryRegistrationHistory.cs" />
@@ -96,6 +102,15 @@
     <Compile Include="RegistrationModification.cs">
       <DependentUpon>RAKModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SecurityActions.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>RAKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserGroup.cs">
+      <DependentUpon>RAKModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersActions.cs" />
+    <Compile Include="UserWithGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj">

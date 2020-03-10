@@ -135,13 +135,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CheckerController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Extentions.cs" />
     <Compile Include="FileProcessor.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MiddlewareCaller.cs" />
     <Compile Include="Models\APIDeliveryRegistration.cs" />
     <Compile Include="Models\CustomerInformation.cs" />
     <Compile Include="Models\Data.cs" />
@@ -157,30 +162,42 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\fa.css" />
+    <Content Include="Content\fixedHeader.dataTables.min.css" />
+    <Content Include="Content\gijgo.min.css" />
+    <Content Include="Content\jquery.dataTables.min.css" />
+    <Content Include="Content\responsive.bootstrap4.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\fa.css" />
     <Content Include="css\faa.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fa-brands-400.svg" />
-    <Content Include="fonts\fa-regular-400.svg" />
-    <Content Include="fonts\fa-solid-900.svg" />
+    <Content Include="fonts\FA.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\dtech.jfif" />
+    <Content Include="images\user.png" />
     <Content Include="js\axios.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\fa.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\Registration\New\js.js" />
     <Content Include="js\vue.js" />
+    <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dt\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\dt\dataTables.fixedHeader.min.js" />
+    <Content Include="Scripts\dt\dataTables.responsive.min.js" />
+    <Content Include="Scripts\dt\jquery.dataTables.min.js" />
+    <Content Include="Scripts\dt\responsive.bootstrap4.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\gijgo.js" />
     <Content Include="Scripts\index.js.flow" />
     <Content Include="Scripts\esm\popper.min.js.map" />
     <Content Include="Scripts\esm\popper.js.map" />
@@ -199,18 +216,7 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\fa-brands-400.eot" />
-    <Content Include="fonts\fa-brands-400.ttf" />
-    <Content Include="fonts\fa-brands-400.woff" />
-    <Content Include="fonts\fa-brands-400.woff2" />
-    <Content Include="fonts\fa-regular-400.eot" />
-    <Content Include="fonts\fa-regular-400.ttf" />
-    <Content Include="fonts\fa-regular-400.woff" />
-    <Content Include="fonts\fa-regular-400.woff2" />
-    <Content Include="fonts\fa-solid-900.eot" />
-    <Content Include="fonts\fa-solid-900.ttf" />
-    <Content Include="fonts\fa-solid-900.woff" />
-    <Content Include="fonts\fa-solid-900.woff2" />
+    <Content Include="fonts\FA.ttf" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -303,6 +309,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -329,6 +336,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Registration\New.cshtml" />
+    <Content Include="Views\Security\Login.cshtml" />
+    <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Checker\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,11 +10,26 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WRMWebApplication.Models;
+using WRMWebApplication;
+using System.Web.Routing;
 
 namespace WRMWebApplication.Controllers
 {
+	[Authorize]
 	public class HomeController : Controller
 	{
+		protected override void OnActionExecuting(ActionExecutingContext filterContext)
+		{
+			if(this.GetUser() == null)
+			{
+				filterContext.Result = new RedirectToRouteResult(
+						new RouteValueDictionary {
+				{ "Controller", "Security" },
+				{ "Action", "Login" }
+						});
+			}
+			base.OnActionExecuting(filterContext);
+		}
 		static Logger logger = LogManager.GetCurrentClassLogger();
 		static Configuration Configuration { get; set; }
 		static List<string> FileNames { get; set; }
@@ -73,7 +88,7 @@ namespace WRMWebApplication.Controllers
 			return Json(new { insertCount, updateCount, deleteCount, notInserted, notUpdated, notDeleted }, JsonRequestBehavior.AllowGet);
 		}
 
-		private static int InsertDeliveryRegistration(int insertCount, List<APIDeliveryRegistration> notInserted, EFRepository.RAKEntities ctx, APIDeliveryRegistration item)
+		private static int InsertDeliveryRegistration(int insertCount, List<APIDeliveryRegistration> notInserted, RAKEntities ctx, APIDeliveryRegistration item)
 		{
 			DeliveryRegistration temp = item.ToBase();
 			insertCount++;
@@ -90,7 +105,7 @@ namespace WRMWebApplication.Controllers
 			return insertCount;
 		}
 
-		private static int UpdateDeliveryRegistration(int updateCount, List<APIDeliveryRegistration> notUpdated, EFRepository.RAKEntities ctx, APIDeliveryRegistration item)
+		private static int UpdateDeliveryRegistration(int updateCount, List<APIDeliveryRegistration> notUpdated, RAKEntities ctx, APIDeliveryRegistration item)
 		{
 			updateCount++;
 			try
@@ -107,7 +122,7 @@ namespace WRMWebApplication.Controllers
 			return updateCount;
 		}
 
-		private static int DeleteDeliveryRegistration(int deleteCount, List<APIDeliveryRegistration> notDeleted, EFRepository.RAKEntities ctx, APIDeliveryRegistration item)
+		private static int DeleteDeliveryRegistration(int deleteCount, List<APIDeliveryRegistration> notDeleted, RAKEntities ctx, APIDeliveryRegistration item)
 		{
 			deleteCount++;
 			try
@@ -127,7 +142,7 @@ namespace WRMWebApplication.Controllers
 
 		public ActionResult Index()
 		{
-			return View();
+			return View(new SecurityActions().GetUserMenu(this.GetUser().Id));
 		}
 
 		public ActionResult JsonTest()

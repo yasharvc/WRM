@@ -14,16 +14,12 @@ namespace EFRepository
     using System.Collections.Generic;
     
     public partial class DeliveryRegistration : PersistableModel<DeliveryRegistration>
-    {
+	{
         public long Id { get; set; }
-        public string ECRN { get; set; }
         public string CRNN { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
         public string MiddleName { get; set; }
-        
         public string CreditCardNumber { get; set; }
-        
         public Nullable<bool> SubForTF { get; set; }
         public string MakerId { get; set; }
         public string CheckerId { get; set; }

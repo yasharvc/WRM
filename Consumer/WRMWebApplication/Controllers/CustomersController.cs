@@ -4,6 +4,7 @@ using System.Web.Http;
 
 namespace WRMWebApplication.Controllers
 {
+	[Authorize]
 	public class CustomersController : ApiController
 	{
 		RAKEntities context = new RAKEntities();
