@@ -1,38 +1,12 @@
 ﻿using EFRepository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace WRMWebApplication.Controllers
 {
 	public class CheckerController : Controller
 	{
-		protected override void OnActionExecuting(ActionExecutingContext filterContext)
-		{
-			try
-			{
-				if (this.GetUserGroup().Id != (int)GroupType.Checker)
-				{
-					filterContext.Result = new RedirectToRouteResult(
-						new RouteValueDictionary {
-				{ "Controller", "Home" },
-				{ "Action", "Index" }
-						});
-				}
-			}
-			catch
-			{
-				filterContext.Result = new RedirectToRouteResult(
-						new RouteValueDictionary {
-				{ "Controller", "Home" },
-				{ "Action", "Index" }
-						});
-			}
-			base.OnActionExecuting(filterContext);
-		}
+		
 		// GET: Checker
 		public ActionResult Index()
 		{
@@ -41,7 +15,10 @@ namespace WRMWebApplication.Controllers
 
 		public int PageCount()
 		{
-			return 2;
+			using (var ctx = new RAKEntities())
+			{
+				return (ctx.DeliveryRegistrations.Where(m => string.IsNullOrEmpty(m.CheckerId)).Count() / RecordsInPage()) + 1;
+			}
 		}
 		public int RecordsInPage()
 		{
@@ -49,22 +26,32 @@ namespace WRMWebApplication.Controllers
 		}
 		public JsonResult GetPageData(int id)
 		{
-			List<object> res = new List<object>();
-			for (var i = 0; i < RecordsInPage(); i++)
+			using (var ctx = new RAKEntities())
 			{
-				res.Add(new { name = $"Name {i + 1} in page {id}", age = i * 10, tool = "" });
+				var res = ctx.DeliveryRegistrations.Where(m => string.IsNullOrEmpty(m.CheckerId)).OrderByDescending(m => m.Id).Skip((id - 1) * RecordsInPage()).Take(RecordsInPage()).ToList();
+				return Json(res, JsonRequestBehavior.AllowGet);
 			}
-			return Json(res, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetColumnNames()
 		{
-			return Json(new string[] { "name", "age", "tool" }, JsonRequestBehavior.AllowGet);
+			return Json(new string[] { "CIF", "FirstName", "LastName" , "tool" }, JsonRequestBehavior.AllowGet);
 		}
 
 		public JsonResult GetColumnTitles()
 		{
-			return Json(new string[] { "User name", "Age", "Actions" }, JsonRequestBehavior.AllowGet);
+			return Json(new string[] { "CIF", "First Name", "LastName", "Actions" }, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult Check(int id)
+		{
+			using(var ctx = new RAKEntities())
+			{
+				var data = ctx.DeliveryRegistrations.Single(m => m.Id == id);
+				data.CheckerId = this.GetUserName();
+				ctx.SaveChanges();
+				return Json(new { result = true });
+			}
 		}
 	}
 }

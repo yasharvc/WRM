@@ -97,8 +97,8 @@
 			render: function (row, col) {
 				debugger;
 				if (col == 'tool')
-					return '<button class="btn btn-link" onclick="test(' + row.age + ')"><i class="fa fa-check-square"></i></button>';
-				return '>' + row[col];
+					return '<button class="btn btn-link" onclick="test(' + row.Id + ')"><i class="fa fa-check-square"></i></button>';
+				return row[col] == null ? "" : row[col];
 			},
 			test: function (id) {
 				alert('test' + id);
@@ -107,7 +107,14 @@
 		}
 	});
 	table.init();
-	function test(page) {
-		alert('outer' + page);
+	function test(id) {
+		table.isLoading = true;
+		axios.post("@Url.Action("Check","Checker")?id=" + id).then(function (resp) {
+			var d = resp.data;
+			if (!d.result){
+				alert(d.error);
+			}
+			table.init();
+		})
 	}
 </script>

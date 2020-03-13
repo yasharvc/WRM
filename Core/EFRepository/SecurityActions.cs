@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EFRepository
 {
@@ -39,12 +36,12 @@ namespace EFRepository
 			}
 		}
 
-		public IEnumerable<GoupMenu> GetUserMenu(int userID)
+		public IEnumerable<GoupMenu> GetUserMenu(List<string> groupNames)
 		{
-			using(var ctx = new RAKEntities())
+			using (var ctx = new RAKEntities())
 			{
-				var userGroup = ctx.UserGroups.Single(m => m.UserId == userID);
-				return ctx.GoupMenus.Where(m => userGroup.GroupId == m.GroupID).ToList();
+				var groups = ctx.Groups.Where(m => groupNames.Contains(m.Name)).Select(m => m.Id);
+				return ctx.GoupMenus.Where(m => groups.Contains(m.GroupID)).ToList();
 			}
 		}
 

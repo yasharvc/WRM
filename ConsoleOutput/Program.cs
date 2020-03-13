@@ -22,17 +22,13 @@ namespace ConsoleOutput
 		}
 		static void Main(string[] args)
 		{
+
 			var xml = new XMLTest();
 			xml.GotoPath("FIXML/Body/executeFinacleScriptResponse/executeFinacleScript_CustomData/getCustomerAndAccountDetails_RES/CustDet");
 
 			Console.WriteLine(xml.GetInnerTextOf("FirstName"));
 			Console.WriteLine(xml.GetInnerTextOf("LastName"));
 			Console.ReadKey();
-		}
-
-		static Stream GenerateStreamFromString(string s)
-		{
-			return new MemoryStream(Encoding.UTF8.GetBytes(s));
 		}
 
 		static void Printa(a a)

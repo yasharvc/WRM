@@ -1,9 +1,7 @@
 ﻿using Contracts;
+using FileParser.Exception;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileParser.RAKBANK
 {
@@ -14,7 +12,7 @@ namespace FileParser.RAKBANK
 			return fileName.StartsWith("CDLEST", StringComparison.OrdinalIgnoreCase);
 		}
 
-		public CAPSFileReader() : base(20, Contracts.UploadFileTypes.RAKBANK_CAPS) { }
+		public CAPSFileReader() : base(20, UploadFileTypes.RAKBANK_CAPS) { }
 
 		public override IEnumerable<T> Parse<T>(string fileContent)
 		{
@@ -30,14 +28,18 @@ namespace FileParser.RAKBANK
 					temp = ToT<T>(Connector.Connect(parser.Slices));
 					temp.SetDefaultValues();
 					if (parser.Slices[1].ToLower() == "i")
-						temp.SetOperation(Contracts.OperationFlag.Insert);
+						temp.SetOperation(OperationFlag.Insert);
 					else if (parser.Slices[1].ToLower() == "m")
-						temp.SetOperation(Contracts.OperationFlag.Modification);
+						temp.SetOperation(OperationFlag.Modification);
 					else if (parser.Slices[1].ToLower() == "d")
-						temp.SetOperation(Contracts.OperationFlag.Unsupscription);
+						temp.SetOperation(OperationFlag.Unsupscription);
 					else
 						temp.SetOperation(OperationFlag.Insert);
 					res.Add(temp);
+				}
+				catch (ColumnCountDoesntMatchException)
+				{
+					throw;
 				}
 				catch { }
 			}

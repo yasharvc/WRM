@@ -48,6 +48,10 @@ namespace FileParser
 				{
 					throw new HeaderFooterFileIsCorruptedException(fileName, firstLine, content);
 				}
+				catch
+				{
+					throw new HeaderFooterFileIsCorruptedException(fileName, firstLine, content);
+				}
 			}
 		}
 

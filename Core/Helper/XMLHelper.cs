@@ -22,7 +22,7 @@ namespace Helper
 
 		private XmlElement GotoElementTemporary(string path)
 		{
-			var parts = path.Split('/');
+			var parts = path.Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries);
 			XmlElement element = current;
 			foreach (var part in parts)
 			{

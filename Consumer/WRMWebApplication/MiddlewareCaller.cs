@@ -5,129 +5,94 @@ using System.Web;
 		using System.Xml;
 using System.Net;
 using System.IO;
+using System.Web.Script.Serialization;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text;
 
 namespace WRMWebApplication
 {
 	public class MiddlewareCaller
 	{
-		string URL = "http://xxxxxxxxx/Service1.asmx";
-		string Action = "http://xxxxxxxx/Service1.asmx?op=HelloWorld";
+		string URL = "http://10.15.14.219:7080/";
+		Random random = new Random();
+		bool isAccountNumber = false;
 
 		Dictionary<string, string> Values = new Dictionary<string, string>
 		{
-			{ "{RequestUUID}","ELX11111111111111" },
-			{ "{ServiceRequestId}","executeFinacleScript" },
-			{ "{ServiceRequestVersion}","10.2" },
-			{ "{ChannelId}","ELX" },
-			{ "{MessageDateTime}","2020-01-06T01:48:33.422" },
-			{ "{requestId}","getCustomerAndAccountDetails" },
-			{ "{AcctId}","1111111111111" },
-			{ "{FetchType}","CA" },
-			{ "{RelatedCIFDetailsFlag}","N" }
+			{ "{RND}","" },
+			{ "{TIME}","2020-01-06T01:48:33.422" },
+			{ "{AcctId}","" },
+			{ "{CreditCard}","" }
 		};
 
-		readonly string RequestXML = @"
-<?xml version={0}1.0{0} encoding={0}UTF-8{0}?>
-<NS1:FIXML xmlns:NS1={0}http://www.finacle.com/fixml{0} xmlns:xsd={0}http://www.w3.org/2001/XMLSchema{0} xmlns:xsi={0}http://www.w3.org/2001/XMLSchema-instance{0}>
-   <NS1:Header>
-      <NS1:RequestHeader>
-         <NS1:MessageKey>
-            <NS1:RequestUUID>{RequestUUID}</NS1:RequestUUID>
-            <NS1:ServiceRequestId>{ServiceRequestId}</NS1:ServiceRequestId>
-            <NS1:ServiceRequestVersion>{ServiceRequestVersion}</NS1:ServiceRequestVersion>
-            <NS1:ChannelId>{ChannelId}</NS1:ChannelId>
-         </NS1:MessageKey>
-         <NS1:RequestMessageInfo>
-            <NS1:BankId>RAK</NS1:BankId>
-            <NS1:TimeZone />
-            <NS1:EntityId />
-            <NS1:EntityType />
-            <NS1:ArmCorrelationId />
-            <NS1:MessageDateTime>{MessageDateTime}</NS1:MessageDateTime>
-         </NS1:RequestMessageInfo>
-         <NS1:Security>
-            <NS1:Token>
-               <NS1:PasswordToken>
-                  <NS1:UserId />
-                  <NS1:Password />
-               </NS1:PasswordToken>
-            </NS1:Token>
-            <NS1:FICertToken />
-            <NS1:RealUserLoginSessionId />
-            <NS1:RealUser />
-            <NS1:RealUserPwd />
-            <NS1:SSOTransferToken />
-         </NS1:Security>
-      </NS1:RequestHeader>
-   </NS1:Header>
-   <NS1:Body>
-      <NS1:executeFinacleScriptRequest>
-         <NS1:ExecuteFinacleScriptInputVO>
-            <NS1:requestId>{requestId}</NS1:requestId>
-         </NS1:ExecuteFinacleScriptInputVO>
-         <NS1:executeFinacleScript_CustomData>
-            <NS1:getCustomerAndAccountDetails_REQ>
-               <NS1:AcctId>{AcctId}</NS1:AcctId>
-               <NS1:FetchType>{FetchType}</NS1:FetchType>
-               <NS1:RelatedCIFDetailsFlag>{RelatedCIFDetailsFlag}</NS1:RelatedCIFDetailsFlag>
-            </NS1:getCustomerAndAccountDetails_REQ>
-         </NS1:executeFinacleScript_CustomData>
-      </NS1:executeFinacleScriptRequest>
-   </NS1:Body>
-</NS1:FIXML>
-";
+		private string GenerateNumber()
+		{
+			return new string(Enumerable.Repeat("0123456789", 15)
+			  .Select(s => s[random.Next(s.Length)]).ToArray());
+		}
 
 		public MiddlewareCaller()
 		{
-			RequestXML = string.Format(RequestXML, "\"");
+			accountNumberRequestXML = accountNumberRequestXML.Replace("{0}", "\"");
+			creditCardRequestXML = creditCardRequestXML.Replace("{0}", "\"");
 		}
-		public MiddlewareCaller(string url,string action)
+		public MiddlewareCaller(string url) : this()
 		{
 			URL = url;
-			Action = action;
 		}
-		public string CallWebService()
+		public string CallWebService(bool accountNumber, string value)
 		{
-			XmlDocument soapEnvelopeXml = CreateSoapEnvelope();
-			HttpWebRequest webRequest = CreateWebRequest(URL, Action);
-			InsertSoapEnvelopeIntoWebRequest(soapEnvelopeXml, webRequest);
-			IAsyncResult asyncResult = webRequest.BeginGetResponse(null, null);
-			asyncResult.AsyncWaitHandle.WaitOne();
-			string soapResult;
-			using (WebResponse webResponse = webRequest.EndGetResponse(asyncResult))
+			HttpWebRequest webRequest = CreateWebRequest(URL);
+			using (var streamWriter = new StreamWriter(webRequest.GetRequestStream()))
 			{
-				using (StreamReader rd = new StreamReader(webResponse.GetResponseStream()))
-				{
-					soapResult = rd.ReadToEnd();
-				}
-				return soapResult;
+				streamWriter.Write(GenerateXML(accountNumber, value));
+				streamWriter.Flush();
+				streamWriter.Close();
+			}
+			var httpResponse = (HttpWebResponse)webRequest.GetResponse();
+			var result = "";
+			using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+				result = streamReader.ReadToEnd();
+			return result;
+		}
+
+		public async Task<string> CallWebService2Async(bool accountNumber, string value)
+		{
+			using (var client = new HttpClient())
+			{
+				client.BaseAddress = new Uri(URL);
+				var content = new StringContent(GenerateXML(accountNumber, value), Encoding.UTF8, "application/xml");
+				var result = await client.PostAsync(URL, content);
+				return await result.Content.ReadAsStringAsync();
 			}
 		}
 
-		private HttpWebRequest CreateWebRequest(string url, string action)
+		private HttpWebRequest CreateWebRequest(string url)
 		{
-			HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
-			webRequest.Headers.Add("SOAPAction", action);
-			webRequest.ContentType = "text/xml;charset=\"utf-8\"";
-			webRequest.Accept = "text/xml";
-			webRequest.Method = "POST";
-			return webRequest;
+			var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+			httpWebRequest.ContentType = "application/xml";
+			httpWebRequest.Method = "POST";
+			//ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+			return httpWebRequest;
 		}
 
-		private XmlDocument CreateSoapEnvelope()
+		private XmlDocument CreateSoapEnvelope(bool accountNumber, string value)
 		{
 			XmlDocument soapEnvelopeDocument = new XmlDocument();
-			soapEnvelopeDocument.LoadXml(GenerateXML());
+			var xml = GenerateXML(accountNumber, value);
+			soapEnvelopeDocument.LoadXml(xml);
 			return soapEnvelopeDocument;
 		}
 
-		private string GenerateXML()
+		private string GenerateXML(bool accountNumber, string value)
 		{
-			var res = RequestXML;
-			foreach (var item in this.Values)
-			{
-				res.Replace(item.Key, item.Value);
-			}
+			var res = "";
+			res = accountNumber ? accountNumberRequestXML : creditCardRequestXML;
+			res = res.Replace(accountNumber ? "{AcctId}" : "{CreditCard}", value);
+			res = res.Replace("{RND}", GenerateNumber());
+			//2020-03-11 05:54:01.070
+			res = res.Replace("{TIME}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + ".000");
 			return res;
 		}
 
@@ -143,5 +108,101 @@ namespace WRMWebApplication
 			get { return Values[index]; }
 			set { if (Values.ContainsKey(index)) Values[index] = value; }
 		}
+
+
+		readonly string accountNumberRequestXML = @"<envelope encodingStyle={0}http://www.altova.com{0}
+      xsi:schemaLocation={0}urn:CustomerAndAccountDetails_v1_req CustomerAndAccountDetails_v1_req.xsd{0}
+      xmlns={0}urn:CustomerAndAccountDetails_v1_req{0} xmlns:xsi={0}http://www.w3.org/2001/XMLSchema-instance{0}
+      xmlns:RAKHeader={0}urn:RAKBankHeader{0}>
+      <header>
+            <RAKHeader:ServiceId>RBS_CustomerAndAccountDetails_v1
+			</RAKHeader:ServiceId>
+            <RAKHeader:ServiceType>
+                  <RAKHeader:type>CustomerAndAccountDetails</RAKHeader:type>
+                  <subtype xmlns = {0}{0} >
+						< RAKHeader:type>String</RAKHeader:type>
+                  </subtype>
+            </RAKHeader:ServiceType>
+            <RAKHeader:ServiceRequestorId>ELX</RAKHeader:ServiceRequestorId>
+            <RAKHeader:ServiceProviderId>String</RAKHeader:ServiceProviderId>
+            <RAKHeader:ServiceChannelId>ELX</RAKHeader:ServiceChannelId>
+            <RAKHeader:RequestID>ELX{RND}</RAKHeader:RequestID>
+            <RAKHeader:IsResponseRequired>String</RAKHeader:IsResponseRequired>
+            <RAKHeader:ServiceExpirySecond>String</RAKHeader:ServiceExpirySecond>
+            <RAKHeader:SecurityInfo>String</RAKHeader:SecurityInfo>
+            <RAKHeader:Language>E</RAKHeader:Language>
+            <RAKHeader:TimeStampyyyymmddhhmmsss>{TIME}
+            </RAKHeader:TimeStampyyyymmddhhmmsss>
+            <RAKHeader:RequestLifeCycleStage>CustomerAndAccountDetailsRequest
+			</RAKHeader:RequestLifeCycleStage>
+            <RAKHeader:MessageStatus>String</RAKHeader:MessageStatus>
+            <RAKHeader:NarrationList>
+                  <RAKHeader:Narration>String</RAKHeader:Narration>
+            </RAKHeader:NarrationList>
+      </header>
+      <body>
+            <AcctInfo>
+                  <AcctId>{AcctId}</AcctId>
+            </AcctInfo>
+            <InquiryType>CustomerAndAccount</InquiryType>
+            <CIFDetailsFlag>N</CIFDetailsFlag>
+            <RefInfo>
+                  <RefType>String</RefType>
+                  <RefValue>String</RefValue>
+            </RefInfo>
+            <Narration>String</Narration>
+      </body>
+</envelope>
+
+";
+
+		readonly string creditCardRequestXML = @"
+<envelope encodingStyle={0}http://www.altova.com{0}
+      xsi:schemaLocation={0}urn:CustomerAndAccountDetails_v1_req CustomerAndAccountDetails_v1_req.xsd{0}
+      xmlns={0}urn:CustomerAndAccountDetails_v1_req{0} xmlns:xsi={0}http://www.w3.org/2001/XMLSchema-instance{0}
+      xmlns:RAKHeader={0}urn:RAKBankHeader{0}>
+      <header>
+            <RAKHeader:ServiceId>RBS_CustomerAndAccountDetails_v1
+			</RAKHeader:ServiceId>
+            <RAKHeader:ServiceType>
+                  <RAKHeader:type>CustomerAndAccountDetails</RAKHeader:type>
+                  <subtype xmlns = {0}{0} >
+
+						< RAKHeader:type>String</RAKHeader:type>
+                  </subtype>
+            </RAKHeader:ServiceType>
+            <RAKHeader:ServiceRequestorId>ELX</RAKHeader:ServiceRequestorId>
+            <RAKHeader:ServiceProviderId>String</RAKHeader:ServiceProviderId>
+            <RAKHeader:ServiceChannelId>ELX</RAKHeader:ServiceChannelId>
+            <RAKHeader:RequestID>ELX{RND}</RAKHeader:RequestID>
+            <RAKHeader:IsResponseRequired>String</RAKHeader:IsResponseRequired>
+            <RAKHeader:ServiceExpirySecond>String</RAKHeader:ServiceExpirySecond>
+            <RAKHeader:SecurityInfo>String</RAKHeader:SecurityInfo>
+            <RAKHeader:Language>E</RAKHeader:Language>
+            <RAKHeader:TimeStampyyyymmddhhmmsss>{TIME}
+            </RAKHeader:TimeStampyyyymmddhhmmsss>
+            <RAKHeader:RequestLifeCycleStage>CustomerAndAccountDetailsRequest
+			</RAKHeader:RequestLifeCycleStage>
+            <RAKHeader:MessageStatus>String</RAKHeader:MessageStatus>
+            <RAKHeader:NarrationList>
+                  <RAKHeader:Narration>String</RAKHeader:Narration>
+            </RAKHeader:NarrationList>
+      </header>
+      <body>
+            <CardLogicalData>
+                  <CardType>Credit Card</CardType>
+                  <CardEmbossNum>{CreditCard}</CardEmbossNum>
+            </CardLogicalData>
+            <InquiryType>CustomerAndAccount</InquiryType>
+            <CIFDetailsFlag>N</CIFDetailsFlag>
+            <RefInfo>
+                  <RefType>String</RefType>
+                  <RefValue>String</RefValue>
+            </RefInfo>
+            <Narration>String</Narration>
+      </body>
+</envelope>
+
+";
 	}
 }

@@ -8,6 +8,7 @@ namespace EFRepository
 	public partial class DeliveryRegistrationDetail : PersistableModel<DeliveryRegistrationDetail>
 	{
 		[FileToPropertyMapper(UploadFileTypes.Finacle_Password_Extraction, 1)]
+		[FileToPropertyMapper(UploadFileTypes.Finacle_Premium_Bank, 1)]
 		public string CIFID { get; set; }
 		[FileToPropertyMapper(UploadFileTypes.Finacle_Password_Extraction, 2)]
 		public string DateOfBirth { get; set; }

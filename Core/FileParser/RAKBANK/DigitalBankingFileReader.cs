@@ -11,6 +11,7 @@ namespace FileParser.RAKBANK
 		}
 		public DigitalBankingFileReader():base()
 		{
+			ExceptedColumnCount = 14;
 			FileType = UploadFileTypes.DigitalBanking;
 		}
 	}

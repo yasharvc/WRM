@@ -16,20 +16,8 @@ using System.Web.Routing;
 namespace WRMWebApplication.Controllers
 {
 	[Authorize]
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
-		protected override void OnActionExecuting(ActionExecutingContext filterContext)
-		{
-			if(this.GetUser() == null)
-			{
-				filterContext.Result = new RedirectToRouteResult(
-						new RouteValueDictionary {
-				{ "Controller", "Security" },
-				{ "Action", "Login" }
-						});
-			}
-			base.OnActionExecuting(filterContext);
-		}
 		static Logger logger = LogManager.GetCurrentClassLogger();
 		static Configuration Configuration { get; set; }
 		static List<string> FileNames { get; set; }
@@ -142,14 +130,14 @@ namespace WRMWebApplication.Controllers
 
 		public ActionResult Index()
 		{
-			return View(new SecurityActions().GetUserMenu(this.GetUser().Id));
+			return View(this.GetUserMenus());
 		}
 
 		public ActionResult JsonTest()
 		{
 			return Json(new RAKEntities().DeliveryRegistrations.Take(2), JsonRequestBehavior.AllowGet);
 		}
-		public async Task<JsonResult> ProcessDownloadFiles()
+		public async Task<JsonResult> ProcessUploadFiles()
 		{
 			if (isInProcess)
 				return Json(new { result = false, message = "Processor is busy" }, JsonRequestBehavior.AllowGet);

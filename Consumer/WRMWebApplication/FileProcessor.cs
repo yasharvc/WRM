@@ -102,17 +102,19 @@ namespace WRMWebApplication
 			{
 				RAKEntities context = new EFRepository.RAKEntities();
 				ProcessedFile processFileInfo = new EFRepository.ProcessedFile();
-				if (reader is CAPSFileReader || 
-					reader is DigitalBankingFileReader || 
-					reader is FinacleCustomerFileReader ||
-					reader is FinaclePremiumBankingFileReader)
+				if (reader.GetType() == typeof(CAPSFileReader) ||
+					reader.GetType() ==  typeof(DigitalBankingFileReader) ||
+					reader.GetType() == typeof(FinacleCustomerFileReader))
 				{
 					var lst = parser.ParseFile<DeliveryRegistration>(System.IO.Path.GetFileName(path), File.ReadAllText(path));
 					foreach (var reg in lst)
 					{
 						reg.SetDefaultValues();
 						if (reg.GetOperation() == Contracts.OperationFlag.Insert)
+						{
+							reg.MakerId = reg.CheckerId = "WRM";
 							context.DeliveryRegistrations.Add(reg);
+						}
 						else if (reg.GetOperation() == Contracts.OperationFlag.Modification)
 						{
 							var res = Context.DeliveryRegistrations.SingleOrDefault(reg.GetFindPredicate());
@@ -120,9 +122,10 @@ namespace WRMWebApplication
 							history.ActionCode = 1;//Update
 							reg.UpdateValues(res);
 							reg.LastModifictionDate = DateTime.Now;
+							reg.MakerId = reg.CheckerId = "WRM";
 							context.DeliveryRegistrationHistories.Add(history);
 						}
-						else if(reg.GetOperation() == Contracts.OperationFlag.Unsupscription)
+						else if (reg.GetOperation() == Contracts.OperationFlag.Unsupscription)
 						{
 							var res = Context.DeliveryRegistrations.SingleOrDefault(reg.GetFindPredicate());
 							DeliveryRegistrationHistory history = res;
@@ -132,26 +135,29 @@ namespace WRMWebApplication
 						}
 					}
 				}
-				else if(
-					reader is FinaclePasswordExtractionFileReader
-					){
-						var lst = parser.ParseFile<DeliveryRegistrationDetail>(System.IO.Path.GetFileName(path), File.ReadAllText(path));
-						foreach (var reg in lst)
+				else if (reader is FinaclePasswordExtractionFileReader || reader is FinaclePremiumBankingFileReader)
+				{
+					var lst = parser.ParseFile<DeliveryRegistrationDetail>(System.IO.Path.GetFileName(path), File.ReadAllText(path));
+					foreach (var reg in lst)
+					{
+						reg.SetDefaultValues();
+						if (reg.GetOperation() == Contracts.OperationFlag.Insert)
+							context.DeliveryRegistrationDetails.Add(reg);
+						else if (reg.GetOperation() == Contracts.OperationFlag.Modification)
 						{
-							reg.SetDefaultValues();
-							if (reg.GetOperation() == Contracts.OperationFlag.Insert)
-								context.DeliveryRegistrationDetails.Add(reg);
-							else if (reg.GetOperation() == Contracts.OperationFlag.Modification)
-							{
-								var res = Context.DeliveryRegistrationDetails.SingleOrDefault(reg.GetFindPredicate());
-								reg.UpdateValues(res);
-							}
-							else if (reg.GetOperation() == Contracts.OperationFlag.Unsupscription)
-							{
-								var res = Context.DeliveryRegistrationDetails.SingleOrDefault(reg.GetFindPredicate());
-								context.DeliveryRegistrationDetails.Remove(res);
-							}
+							var res = Context.DeliveryRegistrationDetails.SingleOrDefault(reg.GetFindPredicate());
+							reg.UpdateValues(res);
 						}
+						else if (reg.GetOperation() == Contracts.OperationFlag.Unsupscription)
+						{
+							var res = Context.DeliveryRegistrationDetails.SingleOrDefault(reg.GetFindPredicate());
+							context.DeliveryRegistrationDetails.Remove(res);
+						}
+					}
+				}
+				else
+				{
+
 				}
 				processFileInfo.FileName = path;
 				processFileInfo.MD5Hash = path.CalcMD5HashByPath();

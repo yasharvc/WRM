@@ -7,30 +7,9 @@ using System.Web.Routing;
 namespace WRMWebApplication.Controllers
 {
 	[Authorize]
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
-		protected override void OnActionExecuting(ActionExecutingContext filterContext)
-		{
-			try
-			{
-				if (this.GetUserGroup().Id != (int)GroupType.Admin)
-				{
-					filterContext.Result = new RedirectToRouteResult(
-						new RouteValueDictionary {
-				{ "Controller", "Home" },
-				{ "Action", "Index" }
-						});
-				}
-			}catch
-			{
-				filterContext.Result = new RedirectToRouteResult(
-						new RouteValueDictionary {
-				{ "Controller", "Home" },
-				{ "Action", "Index" }
-						});
-			}
-			base.OnActionExecuting(filterContext);
-		}
+		
 		public ActionResult Users()
         {
             return View(new UsersActions().GetAllUserWithGroup());
